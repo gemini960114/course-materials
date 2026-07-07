@@ -1,6 +1,6 @@
-# ISMB 2026 Pre-Conference Tutorials (July 06 – July 08)
+# ISMB 2026 Pre-Conference Tutorials (July 06 – July 07)
 **Location:** Virtual Tutorials (VT)
-**Timezone:** CST
+**Timezone:** ET / CST (Eastern Time & China Standard Time)
 **Online Course Portal:** [ISMB 2026 Performedia Platform](https://ismb.performedia.com/)
 
 This directory contains the organized materials and resources for the ISMB 2026 Pre-Conference tutorials, structured chronologically by date.
@@ -9,13 +9,15 @@ This directory contains the organized materials and resources for the ISMB 2026 
 
 ## 📅 Schedule Overview
 
-| Date | Time (CST) | Course ID | Title | Materials & Links |
-| :--- | :--- | :---: | :--- | :--- |
-| **July 06 (Mon)** | 9:00 PM – 1:00 AM | **VT1** | Genomic LLMs in Practice: A Hands-On Introduction with Hugging Face pt1 | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice) |
-| | 9:00 PM – 6:00 AM | **VT3** | Hello Nextflow: Getting started with workflows for bioinformatics | 🌐 [Online Material](https://training.nextflow.io/latest/)<br>📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT3%20-%20Hello%20Nextflow) |
-| | 9:00 PM – 6:00 AM | **VT4** | Multimodal Integration and Multimodal Causal Inference using R/Bioconductor | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT4%20-%20Multimodal%20Integration%20and%20Multimodal%20Causal%20Inference) |
-| **July 07 (Tue)** | 2:00 AM – 6:00 AM | **VT2** | Building Interactive Visualizations of Single-Cell and Spatial Data in Python | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT2%20-%20Building%20Interactive%20Visualizations%20of%20Single-Cell%20and%20Spatial%20Data%20in%20Python) |
-| **July 08 (Wed)** | 2:00 AM – 6:00 AM | **VT7** | Hello nf-core: Level up your workflows with community-curated best practices and developer resources | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-08_Wednesday/Tutorial%20VT7%20-%20Hello%20nf-core) |
+| Date | Time (ET) | Time (CST) | Course ID | Title | Materials & Links |
+| :--- | :--- | :--- | :---: | :--- | :--- |
+| **July 06 (Mon)** | 9:00 AM – 1:00 PM | 9:00 PM – 1:00 AM | **VT1 (pt1)** | Genomic LLMs in Practice: A Hands-On Introduction with Hugging Face pt1 | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice) |
+| | 9:00 AM – 6:00 PM | 9:00 PM – 6:00 AM | **VT3** | Hello Nextflow: Getting started with workflows for bioinformatics | 🌐 [Online Material](https://training.nextflow.io/latest/)<br>📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT3%20-%20Hello%20Nextflow) |
+| | 9:00 AM – 6:00 PM | 9:00 PM – 6:00 AM | **VT4** | Multimodal Integration and Multimodal Causal Inference using R/Bioconductor | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT4%20-%20Multimodal%20Integration%20and%20Multimodal%20Causal%20Inference) |
+| **July 07 (Tue)** | 9:00 AM – 1:00 PM | 9:00 PM – 1:00 AM | **VT1 (pt2)** | Genomic LLMs in Practice: A Hands-On Introduction with Hugging Face pt2 | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice%20pt2) |
+| | 9:00 AM – 1:00 PM | 9:00 PM – 1:00 AM | **VT6** | Programming robust LLM Agents for assisting scientific tasks | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT6%20-%20Programming%20robust%20LLM%20Agents%20for%20assisting%20scientific%20tasks) |
+| | 9:00 AM – 6:00 PM | 9:00 PM – 6:00 AM | **VT8** | Foundation model and graph learning for single-cell omics and histopathology | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT8%20-%20Foundation%20model%20and%20graph%20learning) |
+| | 2:00 PM – 6:00 PM | Wed 2:00 AM – 6:00 AM | **VT7** | Hello nf-core: Level up your workflows with community-curated best practices | 📂 [Local Directory](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT7%20-%20Hello%20nf-core) |
 
 ---
 
@@ -34,11 +36,15 @@ This directory contains the organized materials and resources for the ISMB 2026 
     *   📂 [Lectures](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT4%20-%20Multimodal%20Integration%20and%20Multimodal%20Causal%20Inference/Lectures) (Lectures 1-3 pptx, Causal Discovery Basics pdf)
 
 ### 2. 📅 [July 07 (Tuesday) Pre-Conference](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday)
-*   **[Tutorial VT2 - Building Interactive Visualizations of Single-Cell and Spatial Data in Python](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT2%20-%20Building%20Interactive%20Visualizations%20of%20Single-Cell%20and%20Spatial%20Data%20in%20Python)**:
-    *   [README.md](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT2%20-%20Building%20Interactive%20Visualizations%20of%20Single-Cell%20and%20Spatial%20Data%20in%20Python/README.md) (Course description & objectives)
+*   **[Tutorial VT1 - Genomic LLMs in Practice pt2](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice%20pt2)**:
+    *   [README.md](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice%20pt2/README.md) (Time: 9:00 AM – 1:00 PM ET)
     *   *Place course materials here when available.*
-
-### 3. 📅 [July 08 (Wednesday)](file:///d:/antigravity/course-materials/ISMB2026/2026-07-08_Wednesday)
-*   **[Tutorial VT7 - Hello nf-core](file:///d:/antigravity/course-materials/ISMB2026/2026-07-08_Wednesday/Tutorial%20VT7%20-%20Hello%20nf-core)**:
-    *   [README.md](file:///d:/antigravity/course-materials/ISMB2026/2026-07-08_Wednesday/Tutorial%20VT7%20-%20Hello%20nf-core/README.md) (Course description & learning objectives)
+*   **[Tutorial VT6 - Programming robust LLM Agents for assisting scientific tasks](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT6%20-%20Programming%20robust%20LLM%20Agents%20for%20assisting%20scientific%20tasks)**:
+    *   [README.md](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT6%20-%20Programming%20robust%20LLM%20Agents%20for%20assisting%20scientific%20tasks/README.md) (Time: 9:00 AM – 1:00 PM ET)
+    *   *Place course materials here when available.*
+*   **[Tutorial VT8 - Foundation model and graph learning](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT8%20-%20Foundation%20model%20and%20graph%20learning)**:
+    *   [README.md](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT8%20-%20Foundation%20model%20and%20graph%20learning/README.md) (Time: 9:00 AM – 6:00 PM ET)
+    *   *Place course materials here when available.*
+*   **[Tutorial VT7 - Hello nf-core](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT7%20-%20Hello%20nf-core)**:
+    *   [README.md](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday/Tutorial%20VT7%20-%20Hello%20nf-core/README.md) (Time: 2:00 PM – 6:00 PM ET)
     *   *Place course materials here when available.*
