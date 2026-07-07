@@ -10,7 +10,7 @@ Welcome to the course materials repository. This repository is used to store and
 This collection covers the online tutorial courses from the ISMB 2026 Pre-Conference, organized by date:
 
 *   **📅 [2026-07-06 (Monday)](./ISMB2026/2026-07-06_Monday) | [Local](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday)**
-    *   **VT1**: Genomic LLMs in Practice: A Hands-On Introduction with Hugging Face pt1 (Slides)
+    *   **VT1**: Genomic LLMs in Practice: A Hands-On Introduction with Hugging Face pt1 (Slides & Guided Hands-On Notebooks)
     *   **VT3**: Hello Nextflow: Getting started with workflows for bioinformatics (Online Training Links)
     *   **VT4**: Multimodal Integration and Multimodal Causal Inference (Extracted Rmd Labs & Lectures)
 *   **📅 [2026-07-07 (Tuesday)](./ISMB2026/2026-07-07_Tuesday) | [Local](file:///d:/antigravity/course-materials/ISMB2026/2026-07-07_Tuesday)**

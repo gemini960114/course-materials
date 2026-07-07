@@ -23,8 +23,8 @@ This directory contains the organized materials and resources for the ISMB 2026 
 
 ### 1. 📅 [July 06 (Monday) Pre-Conference](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday)
 *   **[Tutorial VT1 - Genomic LLMs in Practice](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice)**:
-    *   [1_Introduction to Genomic LLMs.pptx](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice/1_Introduction to Genomic LLMs.pptx)
-    *   [2_Training_gLLMs.pptx](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice/2_Training_gLLMs.pptx)
+    *   📂 [Lectures](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice/Lectures) (Slides: Introduction to Genomic LLMs, Training gLLMs)
+    *   📂 [Guided Hands-On](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT1%20-%20Genomic%20LLMs%20in%20Practice/Guided%20Hands-On) (Jupyter Notebooks: Intro to HF, Pretrained gLLMs, Zero Shot, Training gLLMs)
 *   **[Tutorial VT3 - Hello Nextflow](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT3%20-%20Hello%20Nextflow)**:
     *   🌐 [Online Nextflow Training Website](https://training.nextflow.io/latest/)
     *   [Nextflow_Training_Link.url](file:///d:/antigravity/course-materials/ISMB2026/2026-07-06_Monday/Tutorial%20VT3%20-%20Hello%20Nextflow/Nextflow_Training_Link.url) (Browser Shortcut)
