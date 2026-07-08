@@ -1,0 +1,461 @@
+Tutorial VT6 - Programming robust LLM Agents for assisting scientific tasks
+Keyboard Instructions:  + 
+Press Control and / or Command and / keys together to open the keyboard shortcuts help panel.
+72 total chat messages
+July 07, 2026
+Chris Seidel
+
+09:17 PM
+
+The tool call returns 15, right?
+
+Aida T. Miro-Herrans joined the room at 09:17 PM
+
+Damian Wojtowicz joined the room at 09:18 PM
+
+Chingiz Underbayev joined the room at 09:18 PM
+
+Chris Seidel
+
+09:18 PM
+
+Does it matter that the tools returns a string rather than an int? or is that out of scope here?
+
+Damian Wojtowicz left the room at 09:18 PM
+
+Sania Zafar Awan joined the room at 09:18 PM
+
+Morgane Govone joined the room at 09:19 PM
+
+Kenyon Lyon joined the room at 09:19 PM
+
+Sujeet Kulkarni joined the room at 09:19 PM
+
+Vlastimil Martinek
+
+09:19 PM
+
+https://colab.research.google.com/github/MartinekV/ismb-agentic-tutorial/blob/main/NB01_tools.ipynb?copy=true
+
+Chris Seidel
+
+09:19 PM
+
+got it
+
+Xinpeng Zhang
+
+09:19 PM
+
+yes
+
+Sania Zafar Awan
+
+09:19 PM
+
+I can see the link
+
+Maria Eleni Fafouti joined the room at 09:19 PM
+
+Vlastimil Martinek
+
+09:19 PM
+
+sk-or-v1-REMOVED_FOR_SECURITY
+
+Chris Seidel
+
+09:25 PM
+
+in the future, our own openAI API key will work here?
+
+Wen-Dar Lin joined the room at 09:27 PM
+
+Chris Seidel
+
+09:27 PM
+
+got a corny joke:)
+
+"Why don't scientists trust atoms?\n\nBecause they make up everything!"
+
+Sujeet Kulkarni
+
+09:27 PM
+
+The open router is a proxy for different lllms?
+
+Thodoris Danis joined the room at 09:27 PM
+
+Maria Eleni Fafouti
+
+09:28 PM
+
+Im curious when would someone call LLMs in their script as opposed to using an LLM to write a whole script. What's your take on this?
+
+Wen-Dar Lin left the room at 09:31 PM
+
+Luis G Leal Ayala joined the room at 09:33 PM
+
+Chris Seidel
+
+09:34 PM
+
+So is an Agent a thing for holding stuff like system prompts and/or context? (Can you say what an Agent is as a thing?)
+
+Sujeet Kulkarni
+
+09:36 PM
+
+Are there limits on the system prompt?
+
+thanks...
+
+Lei Huang joined the room at 09:39 PM
+
+Sujeet Kulkarni
+
+09:40 PM
+
+Where is tool definition in the string?
+
+Chris Seidel
+
+09:40 PM
+
+Does the agent look at its tool list and read all the docs to know if it can answer the question?
+
+Lei Huang left the room at 09:41 PM
+
+Chris Seidel
+
+09:42 PM
+
+makes sesnse
+
+Sujeet Kulkarni
+
+09:43 PM
+
+The print does not show why it decidede to use the tool. If you have two tools with similar function how does it decide?
+
+what about cost?
+
+in case it cals repeatedly.
+
+Andrew Krueger joined the room at 09:46 PM
+
+Sujeet Kulkarni
+
+09:46 PM
+
+ok, thanks
+
+Chris Seidel
+
+09:46 PM
+
+Was there a reason why it would go crazy?
+
+got it :)
+
+Gideon Idumah joined the room at 09:49 PM
+
+Arti Singh joined the room at 09:50 PM
+
+Arti Singh
+
+09:51 PM
+
+Will the recording available to us later? I need to drop off early. Thanks,
+
+Thanks,
+
+Chris Seidel
+
+09:54 PM
+
+does tool_agent.run_sync() run the tool?
+
+yes, thanks
+
+Chao-Chun Chuang joined the room at 10:05 PM
+
+Chao-Chun Chuang left the room at 10:05 PM
+
+Chris Seidel
+
+10:09 PM
+
+Couldn't we have given it the file path i our query? (that's what I did - though it may have made up the answer.
+
+yes
+
+got it
+
+it doesn't now how to parse a string?
+
+or what a nucleotide it?
+
+Shashank Ravichandran joined the room at 10:16 PM
+
+Shashank Ravichandran left the room at 10:16 PM
+
+Chris Seidel
+
+10:19 PM
+
+Would the solution here be to write a tool that can take a list of sequences and return the max GC? So that when asked that kind of question it could answer it?
+
+Sujeet Kulkarni
+
+10:21 PM
+
+Can we summarize all the sections
+
+Also, can you share your notebook with code for reference
+
+Chris Seidel
+
+10:25 PM
+
+sometimes you have to relaod the chat
+
+Vlastimil Martinek
+
+10:25 PM
+
+https://github.com/MartinekV/ismb-agentic-tutorial/
+
+Farzana Rahman joined the room at 10:26 PM
+
+Farzana Rahman left the room at 10:26 PM
+
+Vlastimil Martinek
+
+10:34 PM
+
+https://colab.research.google.com/github/MartinekV/ismb-agentic-tutorial/blob/main/NB02_outputs.ipynb?copy=true
+
+sk-or-v1-REMOVED_FOR_SECURITY
+
+Chris Seidel
+
+10:37 PM
+
+all good so far
+
+Sujeet Kulkarni
+
+10:46 PM
+
+is this similar to Marshmallow schema validation
+
+ok, thanks
+
+ok
+
+Lei Huang left the room at 11:00 PM
+
+Damian Wojtowicz left the room at 11:03 PM
+
+Yixing Han joined the room at 11:05 PM
+
+Chris Seidel
+
+11:15 PM
+
+is_valid_doi is that a service? How does it know what a valid doi is?
+
+oh yes, I see
+
+Sujeet Kulkarni
+
+11:18 PM
+
+validator process llm output and impact llm processing right?
+
+doesnot
+
+ok
+
+can agent use validator output to improve its result
+
+Damian Wojtowicz left the room at 11:22 PM
+
+Sujeet Kulkarni
+
+11:22 PM
+
+can that lead to a endless run between agent and llm?
+
+so can we improve prompt based on validator output
+
+ok
+
+Sachendra Kumar joined the room at 11:31 PM
+
+Sachendra Kumar left the room at 11:32 PM
+
+Sai Bhavani Gottumukkala joined the room at 11:41 PM
+
+Alexis Roberson joined the room at 11:45 PM
+
+Sania Zafar Awan
+
+11:45 PM
+
+What are certain cases where you would use one over the other
+
+Chris Seidel
+
+11:48 PM
+
+someone was trying to ask a question
+
+I could hear her - but you couldn't
+
+Vlastimil Martinek
+
+11:49 PM
+
+https://colab.research.google.com/github/MartinekV/ismb-agentic-tutorial/blob/main/NB03_multiagent.ipynb?copy=true
+
+sk-or-v1-REMOVED_FOR_SECURITY
+
+Dimosthenis Tzimotoudis joined the room at 11:56 PM
+
+July 08, 2026
+Indrani Datta joined the room at 12:04 AM
+
+Chris Seidel
+
+12:08 AM
+
+35s here
+
+definitely true!
+
+Sujeet Kulkarni
+
+12:12 AM
+
+How we know the accuracy of the script output?
+
+Chris Seidel
+
+12:12 AM
+
+isn't that exercise 1?
+
+Sujeet Kulkarni
+
+12:16 AM
+
+I got completely different charts than you.
+
+Chris Seidel
+
+12:16 AM
+
+me too :)
+
+(reproducible science)
+
+Sujeet Kulkarni
+
+12:17 AM
+
+Is there a way to figure out if the result is correct?
+
+Besides manual checking
+
+Chris Seidel left the room at 12:21 AM
+
+Sujeet Kulkarni
+
+12:21 AM
+
+So in case of agents writing code, directly in repository, how they do it.
+
+yes
+
+ok, thanks
+
+Asim Dave joined the room at 12:31 AM
+
+Vlastimil Martinek
+
+12:32 AM
+
+https://github.com/MartinekV/ismb-agentic-tutorial/
+
+Sania Zafar Awan
+
+12:34 AM
+
+Can you share the link to your github at the end?
+
+Sujeet Kulkarni
+
+12:35 AM
+
+If you package that loop into an own agent you have what you called agend orchestration in the slide
+
+Asim Dave left the room at 12:37 AM
+
+Chao-Chun Chuang left the room at 12:37 AM
+
+Sujeet Kulkarni
+
+12:37 AM
+
+can you share your slides?
+
+Asim Dave left the room at 12:38 AM
+
+Vlastimil Martinek
+
+12:39 AM
+
+slides: https://docs.google.com/presentation/d/1vYCLclTqy1KxfLQPEzWG5kW87v2-usCSCo63DlYTrEM/edit?usp=sharing
+
+Vlastimil Martinek
+
+12:45 AM
+
+course materials: https://github.com/MartinekV/ismb-agentic-tutorial/
+
+slides: https://docs.google.com/presentation/d/1vYCLclTqy1KxfLQPEzWG5kW87v2-usCSCo63DlYTrEM/edit?usp=sharing course materials: https://github.com/MartinekV/ismb-agentic-tutorial/ ML agent (our ISMB paper): https://github.com/BioGeMT/Agentomics-ML
+
+Chao-Chun Chuang left the room at 12:47 AM
+
+Sania Zafar Awan
+
+12:48 AM
+
+Thankyou guys! it was great!
+
+Xinpeng Zhang
+
+12:48 AM
+
+Thank you so much for your great and detailed tutorial!
+
+Asim Dave left the room at 12:48 AM
+
+Sujeet Kulkarni
+
+12:48 AM
+
+Thank you...
+
+Chingiz Underbayev
+
+12:48 AM
+
+how is this more advantagious than using n8n?
+
+Type a message
+ 
+15 unread messagesChris Seidel at 11:15 PM. is_valid_doi is that a service? How does it know what a valid doi is?22 unread messages23 unread messagesChingiz Underbayev at 12:48 AM. how is this more advantagious than using n8n?

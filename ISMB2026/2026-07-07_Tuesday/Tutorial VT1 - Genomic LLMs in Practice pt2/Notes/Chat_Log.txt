@@ -1,0 +1,877 @@
+Tutorial VT1 Pt2 - Genomic LLMs in Practice - A Hands-On Introduction with Hugging Face pt2
+Keyboard Instructions:  + 
+Press Control and / or Command and / keys together to open the keyboard shortcuts help panel.
+74 total chat messages
+July 07, 2026
+Fred Gruber
+
+09:07 PM
+
++1
+
+Nathan Edwards
+
+09:07 PM
+
++1
+
+Jiaqi Li
+
+09:07 PM
+
++1
+
+Manyan Huang joined the room at 09:07 PM
+
+JUAN JOSE PICON COSSIO left the room at 09:07 PM
+
+Ragothaman M Yennamalli joined the room at 09:11 PM
+
+Ragothaman M Yennamalli
+
+09:12 PM
+
+Welcome all to the second part of the tutorial! Sorry I was stuck in the rain and got delayed.
+
+
+👍
+1
+Xijun Zhang joined the room at 09:15 PM
+
+Nathan Edwards
+
+09:17 PM
+
+We appear to be making a new string of space separated kmers for the tokenizer. Why doesn't the tokenizer do this?
+
+Damian Wojtowicz joined the room at 09:18 PM
+
+Damian Wojtowicz left the room at 09:18 PM
+
+Fred Gruber
+
+09:23 PM
+
+is this trainer updating ALL weigths in model?
+
+Thodoris Danis joined the room at 09:23 PM
+
+JUAN JOSE PICON COSSIO
+
+09:24 PM
+
+what is the alternative to epoch?
+
+Fred Gruber
+
+09:27 PM
+
+why only 1 training epoch?
+
+Ziad Kobti joined the room at 09:29 PM
+
+Nathan Edwards
+
+09:29 PM
+
+How do we convert a model trained as a MLM to one suitable for fine-tuning?
+
+Fred Gruber
+
+09:30 PM
+
+how do you calculate the appropriate of the batch size given the size of the model etc is there a tool to help estimate this?
+
+
+👍
+3
+Nathan Edwards
+
+09:30 PM
+
+Are we training only the final attention head for the prediction, or are all the weights being modified?
+
+Ziad Kobti
+
+09:36 PM
+
+Does the finetune process update the pretrained model parameters
+
+Do pretrained parameters freeze during training
+
+
+Fred Gruber
+
+09:30 PM
+
+how do you calculate the appropriate of the batch size given the size of the model etc is there a tool to help estimate this?
+
+Megha Hegde
+
+09:38 PM
+
+This is a good question - it can depend on the sequence length, dataset size, and how much memory you have available. We usually start with a smaller batch size like 8 and adjust from there. If you wanted to, you could perform a grid search to find the optimal batch size (and to optimise other hyperparameters too): https://huggingface.co/docs/transformers/en/hpo_train
+
+Manyan Huang
+
+09:40 PM
+
+For decoder-only model, how the model understand the data without the encoding step
+
+
+Megha Hegde
+
+09:38 PM
+
+This is a good question - it can depend on the sequence length, dataset size, and how much memory you have available. We usually start with a smaller batch size like 8 and adjust from there. If you wanted to, you could perform a grid search to find the optimal batch size (and to optimise other hyperparameters too): https://huggingface.co/docs/transformers/en/hpo_train
+
+Fred Gruber
+
+09:40 PM
+
+so we try increasing until it gives OOM error
+
+Lei Huang joined the room at 09:41 PM
+
+
+Fred Gruber
+
+09:40 PM
+
+so we try increasing until it gives OOM error
+
+Megha Hegde
+
+09:41 PM
+
+Yes, this is also a technique you can try, particularly if you want to speed up training by using the largest batch size possible
+
+Ziad Kobti
+
+09:47 PM
+
+Is this a full fine-tuning without any PEFT? if PEFT used, what will be the difference from the current work?
+
+Can we also fine-tune for an unsupervised dataset?
+
+
+Ziad Kobti
+
+09:47 PM
+
+Can we also fine-tune for an unsupervised dataset?
+
+Megha Hegde
+
+09:49 PM
+
+Fine-tuning is usually supervised, containing data and labels for a specific task
+
+
+Ziad Kobti
+
+09:47 PM
+
+Is this a full fine-tuning without any PEFT? if PEFT used, what will be the difference from the current work?
+
+That's right, this is fine-tuning without PEFT or other techniques. If you would like to see an example of using PEFT, please take a look at this notebook on the Nucleotide Transformer GitHub repo: https://github.com/huggingface/notebooks/blob/main/examples/nucleotide_transformer_dna_sequence_modelling_with_peft.ipynb
+
+
+Megha Hegde
+
+09:49 PM
+
+That's right, this is fine-tuning without PEFT or other techniques. If you would like to see an example of using PEFT, please take a look at this notebook on the Nucleotide Transformer GitHub repo: https://github.com/huggingface/notebooks/blob/main/examples/nucleotide_transformer_dna_sequence_modelling_with_peft.ipynb
+
+Fred Gruber
+
+09:50 PM
+
+what if PEFT
+
+Ziad Kobti
+
+09:51 PM
+
+parameter efficient finetuning PEFT
+
+Fred Gruber
+
+09:51 PM
+
+is this like LORA?
+
+Ziad Kobti
+
+09:51 PM
+
+yes Lora Qlora and others
+
+i'm just wondering what the difference will be if we use the PEFT and this is my question
+
+Megha Hegde
+
+09:53 PM
+
+So PEFT is an umbrella term, and LoRa is a common PEFT method that is used. More info here: https://huggingface.co/learn/smol-course/en/unit1/3a Re: the difference when using PEFT, the changes we would need to make would be to apply our chosen method (e.g., Lora) to the pretrained model, and a few modifications with pretraining.
+
+Daniel Kerchner
+
+09:54 PM
+
+it seems like we don't have the same code in the notebook downloaded from Github
+
+
+Daniel Kerchner
+
+09:54 PM
+
+it seems like we don't have the same code in the notebook downloaded from Github
+
+Megha Hegde
+
+09:55 PM
+
+Hi Daniel, please could you try refreshing the GitHub page and re-downloading the notebook? https://github.com/meghegde/genomic-llms-in-practice/tree/main/Guided%20Hands-On
+
+
+Megha Hegde
+
+09:55 PM
+
+Hi Daniel, please could you try refreshing the GitHub page and re-downloading the notebook? https://github.com/meghegde/genomic-llms-in-practice/tree/main/Guided%20Hands-On
+
+Daniel Kerchner
+
+09:57 PM
+
+Ah thanks, I had downloaded it yesterday
+
+
+👍
+1
+Ziad Kobti
+
+09:58 PM
+
+Can a pretrained model be fine-tuned for generative tasks rather than classification? If yes, is an unlabeled (unsupervised) dataset sufficient, or are labeled data still required?
+
+Lianghao Ding
+
+10:00 PM
+
+Do you have recordings / notebooks that can share for yesterday's session?
+
+Chao-Chun Chuang joined the room at 10:00 PM
+
+
+Lianghao Ding
+
+10:00 PM
+
+Do you have recordings / notebooks that can share for yesterday's session?
+
+Megha Hegde
+
+10:00 PM
+
+Hello, the notebooks and slides are on the GitHub. The ISMB team will make the recordings available in the coming weeks.
+
+
+👍
+2
+Farzana Rahman
+
+10:02 PM
+
+Yes, the notebooks and recordings will be available post-ISMB via the conference organisers
+
+
+👍
+1
+Siqi Sun joined the room at 10:02 PM
+
+Siqi Sun left the room at 10:03 PM
+
+Megha Hegde
+
+10:03 PM
+
+Let's resume the session at 10:15 Washington time. Please feel free to type any additional questions in the chat, and we can address them before we move on to the workshop.
+
+
+👍
+1
+Chao-Chun Chuang left the room at 10:03 PM
+
+Ziad Kobti
+
+10:03 PM
+
+Can a pretrained model be fine-tuned for generative tasks rather than classification? If yes, is an unlabeled (unsupervised) dataset sufficient, or are labeled data still required?
+
+Chao-Chun Chuang left the room at 10:05 PM
+
+
+Ziad Kobti
+
+10:03 PM
+
+Can a pretrained model be fine-tuned for generative tasks rather than classification? If yes, is an unlabeled (unsupervised) dataset sufficient, or are labeled data still required?
+
+Megha Hegde
+
+10:15 PM
+
+Hi Ziad, thanks for the interesting question. For generative tasks, we need a model with a decoder (so either encoder-decoder or decoder-only). Whether we fine-tune depends on the specific task. For instance, if we just wanted to generate sequences based on a prompt, we would stick to the next-token-prediction pretraining. However, if you wanted to do a specific task like generating promoter variants, you could do supervised fine-tuning on prompt/sequence pairs. I don't have an example of this handy, but I can try to find one or create a simple notebook while you are working on the workshop tasks.
+
+Shashank Ravichandran left the room at 10:16 PM
+
+Fred Gruber
+
+10:17 PM
+
+in the attention heatmap if 2 kmer has a high weight then what happens if the 2 kmers appear anywhere in the sequence?
+
+Megha Hegde
+
+10:20 PM
+
+https://github.com/huggingface/notebooks/blob/main/examples/nucleotide_transformer_dna_sequence_modelling_with_peft.ipynb
+
+Ziad Kobti
+
+10:20 PM
+
+Thanks, Megha, for the answer. I'd truly appreciate any further explanation or practical examples for better demonstration
+
+
+👍
+1
+This is also unaccessible https://github.com/huggingface/notebooks/blob/main/examples/nucleotide_transformer_dna_sequence_modelling_with_peft.ipynb
+
+
+Fred Gruber
+
+10:17 PM
+
+in the attention heatmap if 2 kmer has a high weight then what happens if the 2 kmers appear anywhere in the sequence?
+
+Shashank Ravichandran
+
+10:21 PM
+
+Hi Fred. Attention in Transformer models depends not only on the raw k-mer sequences, but also on their relative position and the surrounding sequences. If they appear elsewhere, their new context and distance will dictate a different attention weight. So the relation is specific to that position
+
+Megha Hegde
+
+10:24 PM
+
+https://github.com/meghegde/genomic-llms-in-practice/blob/main/Guided%20Hands-On/4_genomic_llm_embeddings_and_interpretability.ipynb
+
+
+Ziad Kobti
+
+10:21 PM
+
+This is also unaccessible https://github.com/huggingface/notebooks/blob/main/examples/nucleotide_transformer_dna_sequence_modelling_with_peft.ipynb
+
+For anyone who missed my answer, this will be accessible if you download it and open it in Google Colab. Github unfortunately struggles to render .ipynb files sometimes
+
+Jiahui Hou joined the room at 10:34 PM
+
+Ziad Kobti
+
+10:34 PM
+
+Is the embedding generated per token, and then you are averaging those token embeddings?
+
+are you able to extract embedding from internal layers?
+
+Fred Gruber
+
+10:37 PM
+
+is there an uncertainly associated with this? it would be nice to have some error bars to understand when a difference is real or just noise. is layer 4 really better than layer 12?
+
+
+👍
+1
+Ziad Kobti
+
+10:40 PM
+
+What if the extraction is the CLS embedding from the early layers?
+
+you extract the average token embedding from different layers is that correct
+
+so what if we extract cls embedding from all layers?
+
+or is the cls embedding only can be accessed at last layer?
+
+Megha Hegde
+
+10:43 PM
+
+Ziad - will understand and answer your question shortly. In the meantime: here are are the workshop notebooks: https://github.com/meghegde/genomic-llms-in-practice/tree/main/Workshop
+
+
+👍
+1
+Fred Gruber
+
+10:43 PM
+
+is there any work that try to validate some of this interpretation ideas with actual experiments. Like if I were to knowdown or modify a real sequence in the same region that the predictions claim is importat do we actaully see the predicted effect.
+
+what are the names of the files that we should be doing?
+
+Ziad Kobti
+
+10:46 PM
+
+I believe the papers for these genome models include that, but preferably to double-check.
+
+
+👍
+1
+Megha Hegde
+
+10:46 PM
+
+Exercise_Finetuning.ipynb and Exercise_genomic_llm_embeddings_and_interpretability.ipynb
+
+JUAN JOSE PICON COSSIO
+
+10:47 PM
+
+Thanks!
+
+
+Ziad Kobti
+
+10:43 PM
+
+or is the cls embedding only can be accessed at last layer?
+
+Megha Hegde
+
+10:51 PM
+
+Hi Ziad, these embeddings can be accessed at any layer, not just the last one. If you look at the get_layerwise_embeddings function in this notebook (https://github.com/meghegde/genomic-llms-in-practice/blob/main/Guided%20Hands-On/4_genomic_llm_embeddings_and_interpretability.ipynb), it shows how to get the embeddings from all layers.
+
+Type a message
+ 
+Ziad Kobti reacted with thumbs upZiad Kobti reacted with thumbs upMegha Hegde at 10:03 PM. Let's resume the session at 10:15 Washington time. Please feel free to type any additional questions in the chat, and we can address them before we move on to the workshop.Farzana Rahman reacted with thumbs upFarzana Rahman reacted with thumbs up27 unread messagesFarzana Rahman reacted with thumbs up26 unread messagesMegha Hegde at 10:51 PM. Hi Ziad, these embeddings can be accessed at any layer, not just the last one. If you look at the get_layerwise_embeddings function in this notebook (https://github.com/meghegde/genomic-llms-in-practice/blob/main/Guided%20Hands-On/4_genomic_llm_embeddings_and_interpretability.ipynb), it shows how to get the embeddings from all layers.Megha Hegde reacted with thumbs up1 unread messageZiad Kobti reacted with thumbs upZiad Kobti reacted with thumbs up2 unread messagesMegha Hegde reacted with thumbs up
+
+
+Ziad Kobti
+
+10:21 PM
+
+This is also unaccessible https://github.com/huggingface/notebooks/blob/main/examples/nucleotide_transformer_dna_sequence_modelling_with_peft.ipynb
+
+
+Fred Gruber
+
+10:17 PM
+
+in the attention heatmap if 2 kmer has a high weight then what happens if the 2 kmers appear anywhere in the sequence?
+
+Shashank Ravichandran
+
+10:21 PM
+
+Hi Fred. Attention in Transformer models depends not only on the raw k-mer sequences, but also on their relative position and the surrounding sequences. If they appear elsewhere, their new context and distance will dictate a different attention weight. So the relation is specific to that position
+
+Megha Hegde
+
+10:24 PM
+
+https://github.com/meghegde/genomic-llms-in-practice/blob/main/Guided%20Hands-On/4_genomic_llm_embeddings_and_interpretability.ipynb
+
+
+Ziad Kobti
+
+10:21 PM
+
+This is also unaccessible https://github.com/huggingface/notebooks/blob/main/examples/nucleotide_transformer_dna_sequence_modelling_with_peft.ipynb
+
+For anyone who missed my answer, this will be accessible if you download it and open it in Google Colab. Github unfortunately struggles to render .ipynb files sometimes
+
+Jiahui Hou joined the room at 10:34 PM
+
+Ziad Kobti
+
+10:34 PM
+
+Is the embedding generated per token, and then you are averaging those token embeddings?
+
+are you able to extract embedding from internal layers?
+
+Fred Gruber
+
+10:37 PM
+
+is there an uncertainly associated with this? it would be nice to have some error bars to understand when a difference is real or just noise. is layer 4 really better than layer 12?
+
+
+👍
+1
+Ziad Kobti
+
+10:40 PM
+
+What if the extraction is the CLS embedding from the early layers?
+
+you extract the average token embedding from different layers is that correct
+
+so what if we extract cls embedding from all layers?
+
+or is the cls embedding only can be accessed at last layer?
+
+Megha Hegde
+
+10:43 PM
+
+Ziad - will understand and answer your question shortly. In the meantime: here are are the workshop notebooks: https://github.com/meghegde/genomic-llms-in-practice/tree/main/Workshop
+
+
+👍
+1
+Fred Gruber
+
+10:43 PM
+
+is there any work that try to validate some of this interpretation ideas with actual experiments. Like if I were to knowdown or modify a real sequence in the same region that the predictions claim is importat do we actaully see the predicted effect.
+
+what are the names of the files that we should be doing?
+
+Ziad Kobti
+
+10:46 PM
+
+I believe the papers for these genome models include that, but preferably to double-check.
+
+
+👍
+1
+Megha Hegde
+
+10:46 PM
+
+Exercise_Finetuning.ipynb and Exercise_genomic_llm_embeddings_and_interpretability.ipynb
+
+JUAN JOSE PICON COSSIO
+
+10:47 PM
+
+Thanks!
+
+
+Ziad Kobti
+
+10:43 PM
+
+or is the cls embedding only can be accessed at last layer?
+
+Megha Hegde
+
+10:51 PM
+
+Hi Ziad, these embeddings can be accessed at any layer, not just the last one. If you look at the get_layerwise_embeddings function in this notebook (https://github.com/meghegde/genomic-llms-in-practice/blob/main/Guided%20Hands-On/4_genomic_llm_embeddings_and_interpretability.ipynb), it shows how to get the embeddings from all layers.
+
+Regarding CLS specifically, each layer in a BERT-based model should have this
+
+Damian Wojtowicz left the room at 11:03 PM
+
+Fred Gruber
+
+11:06 PM
+
+what is the CLS token?
+
+is this supposed to be used to get the embedding of the sequence as an alternative to mean pooling or some other pooling method to get the embedding of that sequence?
+
+
+Fred Gruber
+
+11:06 PM
+
+what is the CLS token?
+
+Megha Hegde
+
+11:09 PM
+
+The CLS token is used in BERT to represent a summary of each input sequence. It was introduced to enhance efficiency for tasks where we only need sentence-level predictions. So we can use it as an alternative pooling method. More info here: https://aditya007.medium.com/understanding-the-cls-token-in-bert-a-comprehensive-guide-a62b3b94a941
+
+Fred Gruber
+
+11:11 PM
+
+is there a consensus that using a cls token instead of some sort of pooling is always better?
+
+Megha Hegde
+
+11:12 PM
+
+We generally use mean or max pooling for genomic LLMs rather than the CLS token, as most models in our field aren't optimised to use the CLS token as the best representation of the sequences. However, I believe that in the NLP field, models are more likely to use that CLS token for text understanding
+
+So I would say that for genomic LLMs, use your own pooling
+
+Fred Gruber
+
+11:12 PM
+
+ah ok. thanks.
+
+Megha Hegde
+
+11:13 PM
+
+Thanks for the interesting question!
+
+https://github.com/meghegde/genomic-llms-in-practice/blob/main/Guided%20Hands-On/4_genomic_llm_embeddings_and_interpretability.ipynb
+
+Fred Gruber
+
+11:22 PM
+
+do you know if ESM2 uses CLS token and whether people use this CLS for embedding when using that model?
+
+Megha Hegde
+
+11:24 PM
+
+Yes, ESM2 uses the CLS token - I haven't played around much with the embeddings, but I have seen some examples of people using the CLS embeddings, e.g., this paper: https://doi.org/10.1093/bib/bbaf434
+
+
+👍
+1
+
+Megha Hegde
+
+11:24 PM
+
+Yes, ESM2 uses the CLS token - I haven't played around much with the embeddings, but I have seen some examples of people using the CLS embeddings, e.g., this paper: https://doi.org/10.1093/bib/bbaf434
+
+Fred Gruber
+
+11:26 PM
+
+very interesting paper thank you
+
+
+❤️
+1
+
+Fred Gruber
+
+11:26 PM
+
+very interesting paper thank you
+
+Megha Hegde
+
+11:27 PM
+
+Always fascinating to see how different teams make use of the same model in completely different ways!
+
+Sachendra Kumar joined the room at 11:27 PM
+
+
+Megha Hegde
+
+11:27 PM
+
+Always fascinating to see how different teams make use of the same model in completely different ways!
+
+Fred Gruber
+
+11:28 PM
+
+yeah. how to find the best embedding for a given sequence is always a problem since tehre are so many choices. I'm glad to see progress in that area
+
+
+👍
+1
+Sachendra Kumar left the room at 11:31 PM
+
+Sai Bhavani Gottumukkala joined the room at 11:41 PM
+
+Sai Bhavani Gottumukkala left the room at 11:41 PM
+
+Megha Hegde
+
+11:44 PM
+
+I haven't forgotten about the question regarding fine-tuning for generative tasks - preparing some materials for that now!
+
+Lei Huang left the room at 11:48 PM
+
+July 08, 2026
+Maria Eleni Fafouti joined the room at 12:10 AM
+
+Maria Eleni Fafouti left the room at 12:10 AM
+
+Alka Rani joined the room at 12:14 AM
+
+Alka Rani left the room at 12:17 AM
+
+Chris Seidel joined the room at 12:21 AM
+
+Chris Seidel left the room at 12:21 AM
+
+Megha Hegde
+
+12:24 AM
+
+https://docs.google.com/forms/d/e/1FAIpQLSd49WUe5O7GfgkdEjdEWM9RRm4evUTZbt0B1FrafqxIq5_v4g/viewform?pli=1
+
+Fred Gruber
+
+12:25 AM
+
+can you recommend papers on the interpretations of attention weights on genomic data
+
+or other general i nterpretation approaches
+
+Fred Gruber
+
+12:35 AM
+
+where are the emails?
+
+Daniel Kerchner
+
+12:35 AM
+
+Thank you so much to the presenters!
+
+JUAN JOSE PICON COSSIO
+
+12:35 AM
+
+thanks!
+
+Fred Gruber
+
+12:35 AM
+
+thanks!
+
+Chao-Chun Chuang left the room at 12:36 AM
+
+Asim Dave joined the room at 12:37 AM
+
+Farzana Rahman
+
+12:37 AM
+
+https://www.linkedin.com/in/frahmann/
+
+Short-Context gLM Training for Long-Range Variant Effect Prediction
+
+Megha Hegde
+
+12:37 AM
+
+You can reach me at megha.hegde@kingston.ac.uk or via LinkedIn :)
+
+Ragothaman M Yennamalli
+
+12:37 AM
+
+ragothaman@jnu.ac.in https://www.linkedin.com/in/ragothaman-yennamalli-70b76a16b/
+
+Asim Dave left the room at 12:37 AM
+
+
+Fred Gruber
+
+12:25 AM
+
+can you recommend papers on the interpretations of attention weights on genomic data
+
+Megha Hegde
+
+12:38 AM
+
+Hi Fred, I would recommend the following: - Evo2 is particularly interesting as it uses mechanistic interpretability for feature interpretation: https://doi.org/10.1038/s41586-026-10176-5 (more info about mechanistic interpretability here: https://www.neelnanda.io/mechanistic-interpretability/glossary) - GENA-LM uses Integrated Gradients for token attribution - an alternative method to what we used in our hands-on task: https://doi.org/10.1093/nar/gkae1310 - AlphaGenome is a state-of-the-art model and the paper goes into some depth on how its embeddings are used: https://doi.org/10.1038/s41586-025-10014-0 - As we discussed yesterday, the Nucleotide Transformer paper explores different ways of using and processing its embeddings for downstream tasks: https://doi.org/10.1038/s41592-024-02523-z
+
+I will shortly add some materials regarding the generative models to the "Guided Hands-On" section of the GitHub repo
+
+Asim Dave left the room at 12:38 AM
+
+Shashank Ravichandran
+
+12:38 AM
+
+You can reach me through Linked in (www.linkedin.com/in/shashank-ravichandran) or ravichandranshashank@gmail.com
+
+Ragothaman M Yennamalli
+
+12:39 AM
+
+https://www.iscb.org/ismb2026/scientific-programme/publishing
+
+
+Megha Hegde
+
+12:38 AM
+
+Hi Fred, I would recommend the following: - Evo2 is particularly interesting as it uses mechanistic interpretability for feature interpretation: https://doi.org/10.1038/s41586-026-10176-5 (more info about mechanistic interpretability here: https://www.neelnanda.io/mechanistic-interpretability/glossary) - GENA-LM uses Integrated Gradients for token attribution - an alternative method to what we used in our hands-on task: https://doi.org/10.1093/nar/gkae1310 - AlphaGenome is a state-of-the-art model and the paper goes into some depth on how its embeddings are used: https://doi.org/10.1038/s41586-025-10014-0 - As we discussed yesterday, the Nucleotide Transformer paper explores different ways of using and processing its embeddings for downstream tasks: https://doi.org/10.1038/s41592-024-02523-z
+
+Fred Gruber
+
+12:40 AM
+
+thank you!
+
+
+Fred Gruber
+
+12:40 AM
+
+thank you!
+
+Megha Hegde
+
+12:40 AM
+
+No problem - please feel free to reach out if you have any further questions or need more resources
+
+
+Megha Hegde
+
+12:40 AM
+
+No problem - please feel free to reach out if you have any further questions or need more resources
+
+Fred Gruber
+
+12:41 AM
+
+I will take a look at those link but I'm specially interesting in causal interpretation or methods that can be applied to this sort of models
+
+
+Fred Gruber
+
+12:41 AM
+
+I will take a look at those link but I'm specially interesting in causal interpretation or methods that can be applied to this sort of models
+
+Megha Hegde
+
+12:45 AM
+
+That's interesting - I agree it would be helpful to see some more research on validating the model outputs using actual biological data. I was looking at this paper a while ago, which may be of interest: https://doi.org/10.1093/bib/bbaf113 0 - it combines some omics data with a text-based LLM
+
+Chao-Chun Chuang left the room at 12:47 AM
+
+Asim Dave left the room at 12:48 AM
+
+Type a message
+ 
+Ziad Kobti reacted with thumbs upZiad Kobti reacted with thumbs upMegha Hegde at 10:03 PM. Let's resume the session at 10:15 Washington time. Please feel free to type any additional questions in the chat, and we can address them before we move on to the workshop.Farzana Rahman reacted with thumbs upFarzana Rahman reacted with thumbs up27 unread messagesFarzana Rahman reacted with thumbs up26 unread messagesMegha Hegde at 10:51 PM. Hi Ziad, these embeddings can be accessed at any layer, not just the last one. If you look at the get_layerwise_embeddings function in this notebook (https://github.com/meghegde/genomic-llms-in-practice/blob/main/Guided%20Hands-On/4_genomic_llm_embeddings_and_interpretability.ipynb), it shows how to get the embeddings from all layers.Megha Hegde reacted with thumbs up1 unread messageZiad Kobti reacted with thumbs upZiad Kobti reacted with thumbs up2 unread messagesMegha Hegde reacted with thumbs upMegha Hegde reacted with thumbs up32 unread messagesMegha Hegde at 12:38 AM. Hi Fred, I would recommend the following: - Evo2 is particularly interesting as it uses mechanistic interpretability for feature interpretation: https://doi.org/10.1038/s41586-026-10176-5 (more info about mechanistic interpretability here: https://www.neelnanda.io/mechanistic-interpretability/glossary) - GENA-LM uses Integrated Gradients for token attribution - an alternative method to what we used in our hands-on task: https://doi.org/10.1093/nar/gkae1310 - AlphaGenome is a state-of-the-art model and the paper goes into some depth on how its embeddings are used: https://doi.org/10.1038/s41586-025-10014-0 - As we discussed yesterday, the Nucleotide Transformer paper explores different ways of using and processing its embeddings for downstream tasks: https://doi.org/10.1038/s41592-024-02523-z3 unread messages3 unread messages6 unread messages22 unread messages

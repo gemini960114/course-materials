@@ -1,0 +1,39 @@
+https://guangyuwanglab2021.github.io/Loki/pretrain.html
+
+https://github.com/GuangyuWangLab2021/Loki
+
+
+GuangyuWangLab2021 / Loki
+https://github.com/GuangyuWangLab2021/Loki
+
+這個 repo 的描述是 “A visual–omics foundation model to bridge histopathology with spatial transcriptomics”，也就是用 visual–omics foundation model 連結病理影像與空間轉錄體資料。
+
+你截圖中的教學頁面也在這裡：
+
+https://guangyuwanglab2021.github.io/Loki/pretrain.html
+
+
+Hugging Face model repo：
+https://huggingface.co/WangGuangyuLab/Loki
+
+它應該是 Loki 的模型權重下載頁，裡面有：
+
+WangGuangyuLab / Loki
+checkpoint.pt    7.66 GB
+
+對應的 GitHub 原始碼頁是：
+
+https://github.com/GuangyuWangLab2021/Loki
+
+所以可以這樣理解：
+
+類型	連結	用途
+GitHub	GuangyuWangLab2021/Loki	原始碼、README、教學文件
+Hugging Face	WangGuangyuLab/Loki	預訓練模型權重，例如 checkpoint.pt
+
+如果課程要你下載模型，通常是去 Hugging Face 這個頁面下載 checkpoint.pt。Hugging Face 頁面顯示此 repo 是 bsd-3-clause license，且有 checkpoint.pt 約 7.66 GB；GitHub README 則說 Loki 是連結病理影像與 spatial transcriptomics 的 visual–omics foundation model。
+
+
+---
+# 第二個 llm training
+https://colab.research.google.com/drive/1IWmugW5iZ9eWoNPpFn0-_8qiAdILXNxN

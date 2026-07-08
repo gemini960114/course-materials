@@ -1,0 +1,149 @@
+Tutorial VT8 - Foundation model and graph learning for modeling analyzing and interpreting single-cell omics and histopathology data
+Keyboard Instructions:  + 
+Press Control and / or Command and / keys together to open the keyboard shortcuts help panel.
+45 total chat messages
+July 07, 2026
+Siddhi Manish joined the room at 08:16 PM
+
+Siddhi Manish
+
+08:16 PM
+
+https://www.speedtest.net/
+
+Dong Xu joined the room at 08:16 PM
+
+Wen-Dar Lin joined the room at 08:24 PM
+
+Tech Support joined the room at 08:31 PM
+
+Wen-Dar Lin
+
+09:00 PM
+
+yes
+
+Xinpeng Zhang joined the room at 09:03 PM
+
+Xinpeng Zhang left the room at 09:03 PM
+
+Yuri Kotliarov joined the room at 09:04 PM
+
+Seth Munholland joined the room at 09:06 PM
+
+JUAN JOSE PICON COSSIO joined the room at 09:07 PM
+
+JUAN JOSE PICON COSSIO left the room at 09:07 PM
+
+Yiping Fan joined the room at 09:16 PM
+
+Gerhart Graupner joined the room at 09:19 PM
+
+Gerhart Graupner
+
+09:21 PM
+
+Can somebody please alert the presenter to click "hide" on the floating window "player.performedia.com is sharing your screen"?
+
+
+👍
+1
+Riccardo Calandrelli joined the room at 09:26 PM
+
+Riccardo Calandrelli
+
+09:27 PM
+
+I second Gerhart, thank you!
+
+Neha Neha joined the room at 09:32 PM
+
+Maria Eleni Fafouti joined the room at 09:35 PM
+
+Lei Huang joined the room at 09:38 PM
+
+Lei Huang left the room at 09:39 PM
+
+Gideon Idumah joined the room at 09:48 PM
+
+Gideon Idumah
+
+09:48 PM
+
+Can the floating window be hidden?
+
+Gideon Idumah left the room at 09:49 PM
+
+Ziad Kobti joined the room at 09:50 PM
+
+Ziad Kobti left the room at 09:50 PM
+
+Stanley Yang joined the room at 09:56 PM
+
+Siqi Sun joined the room at 10:03 PM
+
+Chao-Chun Chuang joined the room at 10:03 PM
+
+Chao-Chun Chuang left the room at 10:03 PM
+
+Ziad Kobti left the room at 10:37 PM
+
+Chao-Chun Chuang
+
+You
+
+10:50 PM
+
+hi
+
+Would it be possible to share the presentation slides with us
+
+Gideon Idumah
+
+11:03 PM
+
+can you send us the link to this website
+
+Damian Wojtowicz joined the room at 11:03 PM
+
+Damian Wojtowicz left the room at 11:04 PM
+
+Alexis Roberson joined the room at 11:06 PM
+
+Chao-Chun Chuang
+
+You
+
+11:06 PM
+
+https://github.com/GuangyuWangLab2021/Loki
+
+Juexin Wang joined the room at 11:10 PM
+
+Juexin Wang
+
+11:10 PM
+
+https://github.com/GuangyuWangLab2021/Loki/tree/main
+
+Indrani Datta joined the room at 11:10 PM
+
+Juexin Wang
+
+11:12 PM
+
+https://huggingface.co/WangGuangyuLab/Loki/tree/main
+
+https://guangyuwanglab2021.github.io/Loki/index.html
+
+Wen-Dar Lin
+
+11:18 PM
+
+Are we going to practice with 3_OmiCLIP_Introduction.ipynb? I think there is a demo visium data?
+
+Damian Wojtowicz left the room at 11:24 PM
+
+Type a message
+ 
+1 unread messageMessage sent1 unread messageMessage sentDamian Wojtowicz at 11:24 PM. Damian Wojtowicz

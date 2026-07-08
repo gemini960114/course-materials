@@ -1,0 +1,521 @@
+nb02_outputs (1).py
+Python
+這是在做什麼事情
+Thought for a few seconds
+
+PydanticAI 主要功能可以用一句話講：
+
+把 LLM 包裝成一個可以在 Python 程式中穩定使用的 Agent，並且讓輸出有固定格式、可驗證、可重試、可接工具。
+
+不是單純「問 ChatGPT」，而是讓 LLM 變成程式流程裡的一個可靠元件。
+
+1. 讓 LLM 輸出固定格式
+
+一般 ChatGPT 可能回你一段文字：
+
+The method is graph neural networks, and the AUC-ROC is 0.92.
+
+但程式不好處理。
+
+PydanticAI 可以要求它輸出成 Python 物件，例如 notebook 裡定義：
+
+class PaperSummary(BaseModel):
+    published_year: int
+    journal_name: str
+    organisms: list[str]
+
+然後 Agent 會把 abstract 解析成這個結構，讓你可以直接用：
+
+structured_output.published_year
+
+取得資料。這就是 structured output。
+
+2. 用 Pydantic 檢查型別
+
+你可以要求：
+
+published_year: int
+organisms: list[str]
+accuracy: float
+metrics: dict[str, float]
+
+這樣模型不能隨便回一段自然語言，而是要符合你定義的資料格式。
+
+例如 Exercise 1 裡：
+
+class MLPaperSummary(BaseModel):
+    ml_method: str
+    metrics: dict[str, float]
+
+意思是要求 Agent 從論文摘要中抽出機器學習方法，以及指標數值。
+
+3. 可以加 validator 驗證結果是否合理
+
+PydanticAI 不只檢查型別，也可以加自己的邏輯規則。
+
+例如 accuracy 應該是 0 到 1 之間：
+
+if not (0 <= output.accuracy <= 1):
+    raise ModelRetry("Accuracy must be between 0 and 1.")
+
+如果模型把 92.6% 錯誤輸出成 92.6，validator 就會擋下來，要求模型重試。
+
+4. 錯了可以自動重試
+
+這是它很重要的功能。
+
+不是模型錯了你人工改，而是程式可以直接告訴模型：
+
+這個輸出不符合規則，請重新輸出
+
+在 DOI 範例中，如果 DOI 不存在，就執行：
+
+raise ModelRetry(f"DOI does not exist: {doi}")
+
+所以模型第一次抽到假 DOI，系統會退回重試，最後只留下有效 DOI。
+
+5. 可以接外部工具或 API
+
+在 DOI 範例裡，它不是讓 LLM 自己猜 DOI 是否存在，而是用 httpx 去 Crossref API 查：
+
+resp = httpx.get(f"https://api.crossref.org/works/{clean_doi}", timeout=10)
+return resp.status_code == 200
+
+這代表 PydanticAI 可以把 LLM 和外部真實世界工具結合起來。
+
+6. 可以追蹤 Agent 執行過程
+
+notebook 裡的：
+
+pretty_print_trace(result)
+
+可以印出 Agent 的完整流程，例如：
+
+ModelRequest
+ModelResponse
+RetryPromptPart
+ToolReturnPart
+
+這可以幫助你 debug：模型收到什麼、回了什麼、哪裡被 validator 擋下來。
+
+總結
+
+PydanticAI 的主要功能是：
+
+LLM 理解文字
++ Pydantic 定義輸出格式
++ Validator 檢查答案
++ ModelRetry 自動重試
++ Tools / API 補強真實查證
+= 可放進 Python workflow 的可靠 Agent
+
+所以它適合用在：
+
+論文資訊抽取
+醫療文件結構化
+報告自動整理
+資料清理與分類
+API 查證
+批次處理
+AI agent workflow
+
+簡單講，PydanticAI 是讓 LLM 從「聊天回答」變成「程式裡可控、可驗證、可重複執行的工作元件」。
+
+那它還可以做什麼 比方幫我執行 套件程式分析?
+Thought for 13s
+
+可以，PydanticAI 可以讓 Agent 幫你「判斷何時要執行哪個 Python 函式 / 套件 / 分析流程」。它本身不是分析套件，而是把 LLM 接到你的 Python 工具上，讓 LLM 會用工具完成任務。
+
+官方文件也把它定位成 Python 的 GenAI agent framework，用來建立 production-grade 的 GenAI 應用與 workflows；它支援 tools、structured outputs、model providers、observability、evals、durable execution、graph 等功能。
+
+可以做什麼？
+
+例如你有一個生醫分析流程：
+
+輸入 DNA sequence
+↓
+判斷要算 GC content
+↓
+呼叫 Python 函式 get_gc_content()
+↓
+回傳 float 結果
+↓
+整理成人看得懂的解釋
+
+這就是你剛剛做的 Exercise 1。
+
+但它可以擴展成更實用的分析流程，例如：
+
+輸入 FASTA / CSV / expression matrix / abstract
+↓
+Agent 判斷任務類型
+↓
+呼叫對應 Python 套件
+↓
+執行分析
+↓
+驗證結果
+↓
+輸出結構化報告
+例子 1：讓 Agent 執行 Python 套件分析
+
+例如你有一個工具函式：
+
+def analyze_expression_csv(file_path: str) -> dict:
+    import pandas as pd
+
+    df = pd.read_csv(file_path)
+
+    return {
+        "rows": len(df),
+        "columns": list(df.columns),
+        "mean_values": df.mean(numeric_only=True).to_dict()
+    }
+
+你可以把它交給 Agent 當 tool：
+
+agent = Agent(
+    MODEL,
+    tools=[analyze_expression_csv],
+    system_prompt="You are a bioinformatics data analysis assistant."
+)
+
+之後你問：
+
+請分析這個 expression.csv，告訴我有哪些欄位、樣本數、平均值
+
+Agent 就可以決定呼叫 analyze_expression_csv()，取得真實計算結果，再整理成文字。
+
+例子 2：自動選擇分析方法
+
+假設你提供多個工具：
+
+tools=[
+    get_gc_content,
+    run_qiime2_summary,
+    run_scanpy_qc,
+    run_differential_expression,
+    validate_doi
+]
+
+Agent 可以根據使用者問題判斷：
+
+「幫我算這段 DNA 的 GC content」
+→ 呼叫 get_gc_content()
+
+「幫我檢查 single-cell matrix 的 QC」
+→ 呼叫 run_scanpy_qc()
+
+「幫我驗證這些 DOI」
+→ 呼叫 validate_doi()
+
+「幫我跑差異基因分析」
+→ 呼叫 run_differential_expression()
+
+官方文件也有 tools/dependency injection 的概念：你可以用 @agent.tool 註冊函式，讓 LLM 在回應時呼叫工具；工具參數會用 Pydantic 驗證，錯誤可回饋給模型重試。
+
+例子 3：幫你跑生醫套件
+
+以你的工作情境來說，可以做這種 Agent：
+
+Single-cell Agent
+- 讀取 h5ad
+- 用 scanpy 做 QC
+- filter cells / genes
+- normalization
+- PCA / UMAP
+- clustering
+- 找 marker genes
+- 產生分析摘要
+
+或：
+
+Microbiome Agent
+- 讀取 metadata
+- 執行 QIIME2 指令
+- 檢查輸出 artifact
+- 產生 beta diversity / alpha diversity 解釋
+- 如果指令錯誤，自動根據錯誤訊息修正參數
+
+或：
+
+Literature Agent
+- 從 abstract 抽取方法、資料集、metrics
+- 驗證 DOI
+- 整理成 evidence table
+- 輸出 JSON / CSV / markdown report
+但要注意：它不是魔法自動執行所有東西
+
+PydanticAI 能做的是：
+
+讓 LLM 決定何時呼叫你提供的工具
+
+但你還是要先提供「可執行的工具函式」或「可執行的 shell/script」。
+
+也就是：
+
+PydanticAI 不會自己憑空知道怎麼安全跑 QIIME2 / scanpy / slurm
+你要把這些動作包成 Python function
+再讓 Agent 使用
+
+例如：
+
+def run_scanpy_qc(h5ad_path: str) -> dict:
+    ...
+
+或：
+
+def submit_slurm_job(script_path: str) -> str:
+    ...
+
+Agent 負責判斷與串流程，實際分析還是由你的 Python 套件或 HPC 指令完成。
+
+跟直接叫 ChatGPT 幫你分析的差別
+
+直接叫 ChatGPT：
+
+請幫我分析 single-cell data
+
+它可能只能講方法，或看你貼的結果解釋。
+
+PydanticAI Agent：
+
+請幫我分析 single-cell data
+
+它可以真的呼叫：
+
+scanpy.read_h5ad()
+sc.pp.filter_cells()
+sc.pp.normalize_total()
+sc.tl.pca()
+sc.tl.umap()
+sc.tl.leiden()
+
+然後把實際結果整理給你。
+
+總結
+
+可以把 PydanticAI 想成：
+
+LLM 大腦
++ Python tools 手腳
++ Pydantic 型別檢查
++ Validator 品管
++ Retry 自動修正
+= 可執行分析流程的 AI Agent
+
+所以，是的，它可以幫你執行套件程式分析；但前提是你要把分析步驟包成安全、明確、可控的 function/tool。
+
+那舉個範例 HPC slurm job 我可以請 chatgpt 寫 並執行 那 PydanticAI會如何處理 所謂你固定流程
+Thought for 9s
+
+對，這就是重點。
+你現在「直接請 ChatGPT 寫並執行 Slurm job」比較像人工互動式操作；而 PydanticAI 會把這件事包成一個固定、可驗證、可重跑的 workflow。
+
+差別可以這樣看：
+
+你直接問 ChatGPT：
+幫我寫 sbatch → 你看一下 → 執行 → 出錯再貼錯誤給 ChatGPT → 再修
+
+PydanticAI：
+使用者提出任務
+→ Agent 解析需求
+→ 產生 sbatch
+→ validator 檢查資源與危險指令
+→ submit job
+→ 查詢 squeue/sacct
+→ 讀取 log
+→ 若失敗，自動判斷錯誤並修正
+→ 重新提交或回報
+範例：HPC Slurm Agent 固定流程
+
+假設你說：
+
+幫我用 Slurm 跑一個 Python 分析，輸入 data.csv，需要 8 core、64G RAM，跑完產生 result.csv
+
+PydanticAI 不會只是「回答一段 sbatch 給你」，而是可以設計成固定步驟。
+
+Step 1：先把需求轉成結構化格式
+
+例如定義一個 job 規格：
+
+from pydantic import BaseModel, Field
+
+class SlurmJobSpec(BaseModel):
+    job_name: str
+    command: str
+    cpus: int = Field(ge=1, le=64)
+    memory_gb: int = Field(ge=1, le=512)
+    time_limit: str
+    partition: str
+    output_log: str
+    error_log: str
+
+這代表 Agent 不能隨便回一段文字，而是要產生固定格式：
+
+SlurmJobSpec(
+    job_name="csv_analysis",
+    command="python analyze.py --input data.csv --output result.csv",
+    cpus=8,
+    memory_gb=64,
+    time_limit="04:00:00",
+    partition="normal",
+    output_log="logs/%x-%j.out",
+    error_log="logs/%x-%j.err"
+)
+
+這跟你 notebook 裡用 BaseModel 定義 PaperSummary 或 MLPaperSummary 是同一個概念：要求 LLM 輸出可被程式直接使用的結構化資料，而不是普通文字。
+
+Step 2：validator 檢查 job 是否安全合理
+
+例如你可以限制：
+
+from pydantic_ai import ModelRetry
+
+@slurm_agent.output_validator
+def validate_slurm_job(output: SlurmJobSpec) -> SlurmJobSpec:
+    dangerous = ["rm -rf", "sudo", "chmod 777", "mkfs", "reboot"]
+
+    for bad in dangerous:
+        if bad in output.command:
+            raise ModelRetry(f"Command contains dangerous operation: {bad}")
+
+    if output.partition not in ["dev", "normal", "normal2", "4nodes"]:
+        raise ModelRetry("Invalid Slurm partition.")
+
+    if output.memory_gb > 256 and output.partition == "dev":
+        raise ModelRetry("dev partition should not request more than 256GB RAM.")
+
+    return output
+
+這就是「固定流程」裡的品管關卡。
+
+你的 notebook 裡 DOI 範例也是同樣概念：模型輸出 DOI 後，validator 逐一檢查 DOI 是否有效，無效就 raise ModelRetry(...) 要求模型重試。
+
+Step 3：產生 sbatch script
+
+通過驗證後，再由程式固定產生 sbatch，而不是讓模型自由亂寫。
+
+def render_sbatch(spec: SlurmJobSpec) -> str:
+    return f"""#!/bin/bash
+#SBATCH --job-name={spec.job_name}
+#SBATCH --partition={spec.partition}
+#SBATCH --cpus-per-task={spec.cpus}
+#SBATCH --mem={spec.memory_gb}G
+#SBATCH --time={spec.time_limit}
+#SBATCH --output={spec.output_log}
+#SBATCH --error={spec.error_log}
+
+set -euo pipefail
+
+{spec.command}
+"""
+
+這樣好處是格式固定，不會每次 ChatGPT 寫出不同風格的 sbatch。
+
+Step 4：submit job
+
+再包一個工具函式：
+
+import subprocess
+from pathlib import Path
+
+def submit_slurm_job(script_text: str, script_path: str = "job.sbatch") -> str:
+    Path(script_path).write_text(script_text)
+
+    result = subprocess.run(
+        ["sbatch", script_path],
+        capture_output=True,
+        text=True,
+        check=True
+    )
+
+    return result.stdout.strip()
+
+如果執行成功，Slurm 通常會回：
+
+Submitted batch job 123456
+
+Agent 可以再從裡面抓出 job ID。
+
+Step 5：監控 job 狀態
+
+再提供一個工具：
+
+def check_slurm_job(job_id: str) -> str:
+    result = subprocess.run(
+        ["sacct", "-j", job_id, "--format=JobID,JobName,State,Elapsed,MaxRSS"],
+        capture_output=True,
+        text=True,
+        check=True
+    )
+    return result.stdout
+
+Agent 可以根據狀態判斷：
+
+COMPLETED → 讀取輸出結果
+FAILED → 讀取 error log，判斷錯誤原因
+OUT_OF_MEMORY → 增加 memory 後重送
+TIMEOUT → 增加 time limit 後重送
+CANCELLED → 回報使用者
+Step 6：失敗後自動修正
+
+例如 error log 顯示：
+
+slurmstepd: error: Detected 1 oom-kill event
+
+Agent 可以判斷是記憶體不足，然後重新產生：
+
+memory_gb = 128
+
+再提交一次。
+
+但這裡建議要加限制，例如最多重試 2 次，避免無限燒資源。
+
+所謂「固定流程」是什麼？
+
+不是讓 LLM 想做什麼就做什麼，而是你把流程切成固定節點：
+
+1. 解析需求
+2. 產生 SlurmJobSpec
+3. 驗證資源與安全性
+4. 產生 sbatch
+5. 送出 job
+6. 查詢狀態
+7. 讀 log
+8. 判斷是否重試
+9. 輸出報告
+
+LLM 只在需要理解與判斷的地方介入，例如：
+
+使用者需求是什麼？
+錯誤 log 代表什麼？
+該怎麼修正參數？
+最後報告怎麼寫？
+
+真正的執行動作則由 Python function 負責，例如：
+
+submit_slurm_job()
+check_slurm_job()
+read_error_log()
+parse_output()
+跟你直接用 ChatGPT 操作的差異
+項目	直接請 ChatGPT	PydanticAI workflow
+寫 sbatch	可以	可以
+執行 job	可以，但偏互動式	可封裝成工具自動執行
+檢查格式	靠人看	用 Pydantic 型別檢查
+檢查安全性	靠人判斷	用 validator 擋危險指令
+錯誤重試	你貼錯誤再問	可自動讀 log 並重試
+批次處理	不穩定	適合大量任務
+可部署	較弱	可放進 FastAPI / pipeline / 排程
+一句話總結
+
+你直接叫 ChatGPT 跑 Slurm，是：
+
+ChatGPT 當你的互動式助理
+
+PydanticAI 則是：
+
+把「寫 sbatch → 驗證 → 提交 → 監控 → 讀 log → 修正 → 回報」做成可重複執行的 Agent workflow
+
+所以 PydanticAI 的價值不是「它比 ChatGPT 更會寫 Slurm」，而是它可以把這件事變成 標準化、自動化、可驗證、可重試的 HPC 工作流程。
