@@ -1,0 +1,13 @@
+# spatialOmicsLAb
+
+Skip to main content
+Playground
+Input transcript
+EN we're extending tech agent environment for uh executable uh anonymity. Yeah. So, um for for learning this one, we the current is we just find some gap in the omics analysis. Yeah, in current, um in current, in current field of this facial omics, analysis, yeah, we we found that there's a very very many tools in this ecosystem. Yeah. So, and also beyond that, um with the agent like cloud or a product, something, you can explore more and so this field extended more very yeah. So, um it's very also to um um everything and all of them executable. And also interact uh operable. Yeah. Um that means um so in the traditional uh research analysis, for the special omics. Yeah, we always sometimes to use like kind of to find method and also we uh which maybe the our data or workflow and then we can use that method together and make up a platform. And the our data and then after we also manage to um process we after that we will manage to process like the data result and on the on the to do and the um scalable. Yeah. Um yeah. Um so um on this gap, we we designed our omics app, so we integrate one over 100 omics tools and and also we uh provide the um over over 4,000 executable tasks and also we uh provide the over 16 data So that is user do not have any data. Our app can uh some data. According to user question and this have the following. Yeah. Uh so for our our that we have uh we have two levels. Uh for the first level is uh we cover uh level. Uh so in this level we prepare a lot of and tools. Uh and also in affiliated uh we are environment and the other a lot of tools like data uh definitely before videos and outputs validation case to make sure the output is solid and reproducible. Uh reproduce this is good. And so um and also for the agent level, we we we we designed as Yeah, we that to integrate the um valid goal of user and of user question and to the parameters for the tools. And also the tools to um process user data and also to perform the algorithms. So they can the algorithms. and make the users research workflow into it. Yeah. So um yeah. Uh so if we only make that, how to make sure our our research, our specialomics lab um have a expertise level. So we also manually, um use the expertise, knowledge to manually to perform 28 total data set comparisons. to uh across domain to clustering um special convolution cell type deconvolution and also SVG genes. Yeah. So, um in the in further results, our results get comparable performance um compared with the um manually um
+
+Output transcript
+EN
+
+info
+Google AI models may make mistakes, so double-check outputs.
+

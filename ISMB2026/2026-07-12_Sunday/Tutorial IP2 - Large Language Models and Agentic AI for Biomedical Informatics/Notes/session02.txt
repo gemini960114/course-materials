@@ -1,0 +1,1234 @@
+# Bioarc
+https://icml.cc/virtual/2026/poster/65801
+
+https://biomni.stanford.edu/
+
+
+https://colab.research.google.com/drive/18EiOJFG7zNmkSoDj7--wiCXMpVq9W1PX?usp=sharing#scrollTo=MSKOsw9sbfpM
+
+https://llm4biomed.github.io/2026/ 
+
+https://colab.research.google.com/drive/1C2d3fWSuvieXFz972ZGg2tQezXJXMclV?usp=sharing 
+```
+Tutorial IP2
+Large Language Models and Agentic AI for Biomedical Informatics
+July 12, 2026  ·  14:00 – 18:00  ·  Room: Jefferson West
+Description
+Large Language Models (LLMs) such as ChatGPT have demonstrated strong capabilities in understanding, generating, and reasoning over natural language. In bioinformatics and biomedical informatics, these models are rapidly emerging as a new computational paradigm with the potential to transform literature mining, data integration, workflow automation, and biomedical reasoning. This tutorial provides a practical, introductory, and hands-on guide to understanding and applying LLMs and agentic AI systems in biomedical data science research. The tutorial begins with a concise introduction to LLMs and their evolution, followed by an overview of both commercial and open-source models commonly used in scientific applications. Participants will learn core techniques including prompt design, retrieval-augmented generation for biomedical literature and databases, text-to-SQL query generation, and bioinformatics code generation in Python. Building on these foundations, the tutorial introduces agentic AI systems that enable multi-step reasoning, tool use, and workflow orchestration for complex bioinformatics and biomedical informatics tasks. Through guided hands-on exercises and real-world case studies, participants will gain practical experience applying LLMs and agentic AI to realistic biomedical research scenarios. The tutorial also emphasizes responsible and rigorous use of these models, addressing limitations such as hallucination, bias, robustness, and reproducibility in scientific and clinical contexts. By the end of the tutorial, attendees will be equipped with foundational knowledge, practical skills, and best practices to responsibly integrate LLMs and agentic AI into biomedical research workflows.
+
+Learning Objectives
+
+By the end of the tutorial, participants will be able to:
+
+Understand key characteristics of large-scale biomedical data
+Apply LLMs to biomedical literature mining and data querying
+Use LLMs to accelerate bioinformatics programming workflows
+Implement retrieval-augmented generation for biomedical QA
+Understand agentic AI systems for complex biomedical tasks
+Critically assess limitations and risks of LLM-based methods
+Organizers
+			
+Wenqi Shi
+UT Southwestern Medical Center	Xuan Wang
+Virginia Tech	Robert Tang
+Yale University	Mark Gerstein
+Yale University
+Schedule
+July 12, 2026 · Room: Jefferson West
+
+Time	Section	Presenter
+14:00 - 14:05	Welcome and Overview	Robert Tang
+14:05 - 14:15	Some Background on LLMs and Agents	Robert Tang
+14:15 - 14:30	Coding LLMs for Biomedical	Robert Tang
+14:30 - 14:50	Coding LLMs in Practice	Robert Tang and Yuxuan Liao
+14:50 - 14:55	Break and QA
+15:00 - 16:00	LLMs & Agentic AI for Biomedical Informatics: Case Studies for Brain Genomics and Comparisons with Past Approaches	Mark Gerstein (Virtual)
+16:00 - 16:30	LLM and Agentic AI for Bioinformatics	Xuan Wang
+16:30 - 17:00	BioArc Practice Tutorial	Xuan Wang and Yi Fang
+17:00 - 17:30	Scaling Agentic Intelligence in Computational Biomedical Research	Wenqi Shi
+17:30 - 18:00	Computational Biomedical Research	Wenqi Shi and Yi Jiang
+```
+
+```
+
+Biomni Logo
+About
+Environment
+Team
+Blog
+FAQ
+Paper
+GitHub
+Contact Us
+A General-Purpose Biomedical AI Agent
+... with 150 specialized tools, 59 databases, and 105 software to automate
+
+clinical decision support
+Try it now!
+Join Slack
+Follow us on X
+Follow on LinkedIn
+Stanford University
+Genentech
+Arc Institute
+UCSF
+Princeton University
+University of Washington
+See Biomni in Action
+
+Variant interpretation
+Perturb-seq data analysis
+ADMET property prediction
+Cloning protocol design
+CRISPR screen design
+Rare disease diagnosis
+Molecular docking
+scRNA-seq annotation
+Dataset download
+
+Variant interpretation preview
+Variant interpretation
+Learn how Biomni streamlines genetic variant interpretation
+
+Watch Video
+The Biomni Environment
+150
+Specialized Tools
+• DNA/RNA sequence analysis
+
+• Protein structure prediction
+
+• CRISPR guide design
+
+• Cell type annotation
+
+• Drug-target interaction
+
+• Pharmacokinetic modeling
+
+59
+Databases
+• Genomic variants
+
+• Protein structures
+
+• Pathway information
+
+• Disease associations
+
+• Drug interactions
+
+• Literature repositories
+
+105
+Software
+• Bioinformatics packages
+
+• Molecular modeling
+
+• Single-cell analysis
+
+• Statistical frameworks
+
+• Visualization libraries
+
+• Machine learning tools
+
+Explore Full Environment Catalog
+Try it now!
+About Biomni
+Biomni Logo
+A general-purpose biomedical AI agent
+
+
+```
+
+---
+Skip to main content
+Playground
+Input transcript
+ZH 嗯,然後
+
+EN last before going to Athens, I want to talk about two other work, except the ACM this year, called Bioark, discovering optimal architectural biological function model. This is what I mentioned at the very beginning, I kind of feel uh the foundation model for science, for biology, for biological sequence, still have a lot of room for novel explorations, we don't necessarily need to directly borrow from transformer, which is built on for text. Because different biological data they have their own characteristics. So what we did in this paper is we do automatic neural architecture search to see if we can automatically find a much smaller but much more effective neural architectures as the backbone of a foundation model for uh say DNA sequence, or protein sequence or more generally can be applied to other things, yeah. So we have a super large space. At the end of the my part I also have a brief demo. for Bioark. So if anyone interested, they will can explore that together. Yeah, but the general framework first we have a super large space where we can have different architecture modules, CNN, RNN, transformer, different architecture modules, that's not me whole framework. Module just means a small block, but layers, yeah. But you have uh the macro choose or select to combine this different modules into a new architecture. and then do the training. Then we have a super large space. We have some uh first pruning steps. Then we have a super net concept. on all the possible paths that connect all this space, all this different modules. huge space. Then we do a training. on the supernet. Uh after that, yeah, this is supernet training. One shot training. And after that at the very end we will find the optimal task specific architecture. And then we can also take the overall best as the foundation model of this whole modality to do up training. More specifically, like I mentioned, uh before, I kind of feel for the biological sequence, the tokenization is not done. Uh I mean it's not dominant. But a certain methodology, which means probably for different neural architecture, they would prefer different tokenization. That's for the biological sequence, that is very important. So in our method design, we are doing co-optimization. of the tokenization and the architecture search and the training. to eventually yield the best architecture for different modalities. Oh, here are some results. So this is just a partial results on image, but we have that on protein as well. Uh you can see that in the baseline, we have DNA we have new type of transformer DNA bird to different models. This is the parameter size. And you can see in general the parameter falls under hundreds to thousands of millions of parameters, which far with our architecture search, we can effectively much smaller models, just within three or six parameters, which is uh tens of hundreds of times smaller. In terms of the training data also this model falls under billions of trillions of data points, but we take a smallest set of 3
+
+Output transcript
+ZH 嗯,然後
+
+ZH 最後在去雅典之前,我想談談另外兩件作品,除了ACM今年這件,叫Bioark,探索最佳的建築生物功能模型。這就是我在最開始提到的,我有點覺得呃,基礎模型對於科學,對於生物學,對於生物序列,還有很大的發展空間,對於新穎的探索,我們不一定需要直接借鑒來自Transformer的,這是建立在文本上的。因為不同的生物數據有它們自己的特徵。所以我們做的是在這篇論文中我們做了一個自動神經架構搜索,看看我們是否可以自動找到一個小得多的但更有效的神經架構,作為骨幹的基礎模型對於呃,比如DNA序列,或者蛋白質序列,或者更一般地可以應用於其他事情,是的。所以我們有一個超大的空間。在最後我的部分,我還有一個簡短的演示。關於Bioark。所以如果有人感興趣,他們可以一起探索。是的,但總體框架是我們首先有一個超大的空間,在那裡我們可以有不同的架構模塊, CNN, RNN, transformer,不同的架構模塊,這不是我整個框架。模塊只是指一個小塊,但是層,是的。但是你有呃,宏觀選擇或者選擇組合這些不同的模塊,形成一個新的架構。然後進行訓練。然後我們有一個超大的空間。我們有一些,首先是修剪步驟。然後我們有一個超級網絡的概念。在所有可能的路徑上,連接所有這些空間,所有這些不同的模塊。巨大的空間。然後我們做一個訓練。在超級網絡上。呃,之後,是的,這是超級網絡訓練。一次性訓練。然後在最後,我們會找到最佳的特定任務的架構。然後我們也可以採用整體最佳的作為基礎模型的整個模態,來進行預訓練。更具體地說,就像我提到的,呃,之前,我有點覺得對於生物序列,標記化還沒完成。呃,我是說它不是主導的。但是某種方法論,這意味著可能對於不同的神經架構,他們會傾向於不同的標記化。這是針對生物序列的,這非常重要。所以在我們的方法設計中,我們在進行聯合優化。的標記化和架構搜索以及訓練。最終得出最佳的架構用於不同的模態。哦,這裡是一些結果。所以這只是在一個圖像上的部分結果,但我們在蛋白質上也有。呃,你可以看到在基準線中,我們有DNA我們有新型的Transformer DNA Bird用於不同的模型。這是參數大小。你可以看到總體上參數下降了到幾百到幾千萬個參數。這比我們的方法在架構搜索中,我們可以有效地獲得小得多的模型,只需在三或六百萬個參數,這比呃幾十到幾百倍小。在訓練數據方面,這個模型也屬於幾十億到幾萬億個數據點,但我們採用了一個最小的
+
+info
+Google AI models may make mistakes, so double-check outputs.
+
+
+
+---
+ChatGPT
+
+
+
+
+
+Invite team members
+
+ISMB_of_BioArc_Tutorial_GPU_DNA.ipynb
+File
+解說程式碼 中文
+
+Worked for 11s
+我會先讀取這份 Notebook 的章節、Markdown 說明與每個程式碼區塊，再依執行順序用中文解釋用途、輸入輸出及關鍵參數。
+
+
+Inspected Jupyter notebook content and extracted cell source code
+這份 Notebook 是一個 BioArc 生物序列模型教學，主要示範如何使用 GPU：
+
+建立混合式神經網路搜尋空間
+
+建立權重共享的 Supernet
+
+使用 DNA 做 Masked Language Model 預訓練
+
+載入搜尋得到的 BioArc 8M 模型
+
+與 Nucleotide Transformer 50M 比較
+
+解釋模型判斷 DNA promoter 的依據
+
+一、整體流程
+整份程式的資料流可以理解成：
+
+DNA 序列
+  ↓
+Tokenizer：A/C/G/T 轉成 token ID
+  ↓
+Embedding
+  ↓
+CNN / Transformer / LSTM / Hyena 混合架構
+  ↓
+特徵表示
+  ↓
+分類器
+  ↓
+判斷 DNA 類別
+BioArc 的特色是：不是只使用 Transformer，而是從不同類型的神經網路模組中，自動搜尋適合生物序列的混合架構。
+
+0. Colab 環境準備
+複製 GitHub 專案
+import os, shutil
+
+REPO = "/content/ISMB-tutorial"
+if not os.path.isdir(os.path.join(REPO, ".git")):
+    !git clone https://github.com/YiFang99/ISMB-tutorial.git {REPO}
+%cd {REPO}
+說明
+REPO = "/content/ISMB-tutorial"
+指定專案要放在 Colab 的哪個目錄。
+
+if not os.path.isdir(os.path.join(REPO, ".git")):
+檢查目錄裡是否已經有 Git repository。
+
+這樣做的好處是，重新執行儲存格時，不會再次 git clone。
+
+!git clone ...
+前面的 ! 是 Jupyter Notebook 語法，表示執行 Linux shell 指令。
+
+%cd {REPO}
+切換目前工作目錄到專案資料夾。
+
+安裝相依套件
+import sys
+IN_COLAB = "google.colab" in sys.modules
+判斷目前是不是在 Google Colab 執行。
+
+if IN_COLAB:
+    %pip install -q "transformers==4.56.0" "tokenizers==0.22.0" einops
+else:
+    %pip install -q -r requirements.txt
+如果是 Colab，只安裝教學需要的套件：
+
+transformers：Hugging Face 模型
+
+tokenizers：文字與 DNA tokenizer
+
+einops：方便進行 Tensor 維度轉換
+
+如果不是 Colab，就依照專案的 requirements.txt 安裝完整環境。
+
+1. 基本設定與 GPU 偵測
+import os, sys, json, random, time, copy
+import numpy as np, torch, torch.nn as nn
+載入：
+
+numpy：數值運算
+
+torch：PyTorch
+
+torch.nn：神經網路模組
+
+json：讀取設定與 DNA 資料
+
+random：隨機抽樣
+
+自動尋找專案根目錄
+def _find_root(start):
+    d = os.path.abspath(start)
+    while d != os.path.dirname(d):
+        if os.path.isdir(os.path.join(d, "core")) and os.path.exists(
+            os.path.join(d, "requirements.txt")
+        ):
+            return d
+        d = os.path.dirname(d)
+    return os.path.abspath(start)
+這個函式會從目前目錄開始，逐層往上找，直到找到同時包含：
+
+core/
+requirements.txt
+的資料夾。
+
+找到後，便認定它是專案根目錄。
+
+PROJECT_DIR = _find_root(os.getcwd())
+sys.path.insert(0, PROJECT_DIR)
+將專案根目錄加入 Python 的模組搜尋路徑，之後才能執行：
+
+from core.xxx import xxx
+選擇 GPU 或 CPU
+DEVICE = torch.device(
+    "cuda" if torch.cuda.is_available() else "cpu"
+)
+如果 CUDA GPU 可用：
+
+DEVICE = cuda
+否則：
+
+DEVICE = cpu
+後續模型與資料都會透過：
+
+.to(DEVICE)
+移動到同一個裝置。
+
+固定隨機種子
+torch.manual_seed(0)
+random.seed(0)
+np.random.seed(0)
+固定亂數結果，讓每次執行的：
+
+資料抽樣
+
+模型初始化
+
+訓練順序
+
+盡量一致。
+
+if DEVICE.type == "cuda":
+    torch.cuda.manual_seed_all(0)
+如果使用 GPU，也固定 GPU 的隨機種子。
+
+2. BioArc 的混合架構搜尋空間
+cfg = json.load(
+    open(f"{PROJECT_DIR}/configs/searchSpace_config/mix.json")
+)
+讀取搜尋空間設定。
+
+blocks = cfg["architecture_list"]
+depths = {
+    int(k): v
+    for k, v in cfg["layer_nums_dict"].items()
+}
+其中：
+
+blocks
+可能包含：
+
+cnn
+transformer
+lstm
+mamba
+hyena
+而：
+
+cfg["hidden_dim_list"]
+定義每一層可能使用的 hidden dimension，例如：
+
+64
+128
+256
+計算可能的模組排列
+for L in sorted(depths):
+    o = len(blocks) ** L
+假設有 5 種模組，網路深度為 3：
+
+5³ = 125
+深度為 6：
+
+5⁶ = 15,625
+這還只是「模組類型的排列」。
+
+如果再加上：
+
+每層 hidden dimension
+
+不同層數
+
+不同輸入輸出維度
+
+候選架構可能達到數百萬種。
+
+因此不可能每個架構都從頭完整訓練，才需要使用 Supernet 和權重共享。
+
+3. 顯示五種候選架構
+PATHS = [
+    [("cnn",64,128),
+     ("transformer",128,128),
+     ("lstm",128,128)],
+    ...
+]
+每個 tuple 的格式是：
+
+(模組類型, 輸入維度, 輸出維度)
+例如：
+
+("cnn", 64, 128)
+表示：
+
+使用 CNN
+輸入特徵維度：64
+輸出特徵維度：128
+因此第一條路徑是：
+
+Embedding
+  ↓
+CNN 64→128
+  ↓
+Transformer 128→128
+  ↓
+LSTM 128→128
+後面的 Matplotlib 程式只是把這五條路徑畫成方塊圖，並沒有執行模型訓練。
+
+4. DNA Tokenizer 與資料載入
+tok = MyTokenizer(PROJECT_DIR, "DNA", "kmer1")
+建立 DNA tokenizer。
+
+其中：
+
+DNA
+表示資料類型是 DNA。
+
+kmer1
+表示一個鹼基就是一個 token。
+
+例如：
+
+ACGT
+可能轉成：
+
+[A_ID, C_ID, G_ID, T_ID]
+取得特殊 token
+PAD = tok.token_to_id("[PAD]")
+MASK = tok.token_to_id("[MASK]")
+VOCAB = tok.vocab_size
+[PAD]
+用來補齊不同長度的序列。
+
+例如：
+
+ACGT
+AC
+補齊後可能變成：
+
+ACGT
+AC[PAD][PAD]
+[MASK]
+遮住部分 DNA 鹼基，讓模型預測原本內容。
+
+例如：
+
+ACGTAC
+遮罩後：
+
+A[MASK]GTA[MASK]
+模型要猜出：
+
+C、C
+讀取 GRCh38 DNA
+with open(
+    f"{PROJECT_DIR}/datasets/GRCh38/"
+    "processed_data_short/all_sentences.jsonl"
+) as f:
+    for i, line in enumerate(f):
+        if i >= 96:
+            break
+        seqs.append(json.loads(line)["text"].upper())
+只讀前 96 條 DNA 序列，用於快速教學。
+
+.jsonl 是一行一個 JSON 物件，例如：
+
+{"text": "ACGTACGT..."}
+.upper() 是將 DNA 字母統一轉成大寫。
+
+5. 建立權重共享 Supernet
+這一段是整份教學的核心。
+
+pool = nn.ModuleDict()
+建立一個模組池，存放所有不同的神經網路區塊。
+
+建立唯一模組名稱
+def _k(t, i, o):
+    return f"{t}_{i}_{o}"
+例如：
+
+_k("cnn", 64, 128)
+會得到：
+
+cnn_64_128
+同樣類型、同樣輸入輸出維度的模組，會使用相同名稱。
+
+避免重複建立模組
+for p in PATHS:
+    for c in p:
+        if _k(*c) not in pool:
+            pool[_k(*c)] = build_module(*c)
+假設三條路徑都包含：
+
+("transformer", 128, 128)
+程式不會建立三個 Transformer，而只建立一個：
+
+transformer_128_128
+三條路徑共同使用它。
+
+這就是 權重共享 Weight Sharing。
+
+建立每條模型路徑
+paths = [
+    nn.Sequential(*[pool[_k(*c)] for c in p])
+    for p in PATHS
+]
+將每條候選架構組成 nn.Sequential。
+
+例如第一條路徑會類似：
+
+nn.Sequential(
+    pool["cnn_64_128"],
+    pool["transformer_128_128"],
+    pool["lstm_128_128"]
+)
+Embedding 與預測頭
+emb_s = nn.Embedding(
+    VOCAB,
+    64,
+    padding_idx=PAD
+)
+將每個 DNA token ID 轉成 64 維向量。
+
+假設輸入維度為：
+
+batch × sequence_length
+經過 embedding 後變成：
+
+batch × sequence_length × 64
+head_s = nn.Linear(128, VOCAB)
+將每個位置的 128 維特徵，轉成 vocabulary 中每個 token 的分數。
+
+也就是預測該位置原本是：
+
+A、C、G、T 或其他特殊 token
+移到 GPU
+emb_s = emb_s.to(DEVICE)
+head_s = head_s.to(DEVICE)
+pool = pool.to(DEVICE)
+模型和資料必須在相同裝置。
+
+不能讓模型在 GPU、資料卻留在 CPU，否則會出現：
+
+Expected all tensors to be on the same device
+6. 建立 Masked Language Model 資料
+def mb(bs=8, Lb=32):
+這個函式每次產生一個訓練 batch。
+
+參數：
+
+bs=8：一次 8 條 DNA
+
+Lb=32：每條最多取 32 個 token
+
+隨機抽取 DNA
+ids = [
+    torch.tensor(tok.encode(s).ids[:Lb])
+    for s in random.sample(seqs, bs)
+]
+從 96 條 DNA 中隨機抽出 8 條，並且只取前 32 個 token。
+
+補齊序列
+ids = torch.nn.utils.rnn.pad_sequence(
+    ids,
+    batch_first=True,
+    padding_value=PAD
+)
+將不同長度的序列補齊成相同長度。
+
+輸出形狀大致為：
+
+8 × 32
+建立答案與遮罩位置
+tgt = torch.full_like(ids, PAD)
+m = torch.rand(ids.shape) < 0.15
+m 是一個布林矩陣，每個位置有 15% 機率為 True。
+
+tgt[m] = ids[m]
+只有被遮住的位置會保留正確答案。
+
+其他位置保持 [PAD]，之後 loss 會忽略它們。
+
+ids[m] = MASK
+將選中的 15% token 替換成 [MASK]。
+
+模型前向傳播
+def run(pi, ids):
+    return head_s(paths[pi](emb_s(ids)))
+執行流程：
+
+token IDs
+  ↓
+Embedding
+  ↓
+選定的 path
+  ↓
+Linear prediction head
+pi 是路徑編號，例如：
+
+run(2, ids)
+表示使用第 2 條候選架構。
+
+Loss 函式
+lossfn = nn.CrossEntropyLoss(ignore_index=PAD)
+使用交叉熵計算 token 預測錯誤。
+
+ignore_index=PAD 表示答案為 [PAD] 的位置不計算 loss。
+
+所以只有被遮罩的 15% 位置會影響訓練。
+
+7. One-shot 預訓練
+opt = torch.optim.AdamW(
+    list(emb_s.parameters())
+    + list(pool.parameters())
+    + list(head_s.parameters()),
+    lr=1e-3
+)
+AdamW 會更新：
+
+Embedding
+
+共享模組池
+
+預測 head
+
+每一步只訓練一條路徑
+for step in range(60):
+    ids, tgt = mb()
+    pi = random.randrange(len(paths))
+每一步：
+
+建立一個 DNA batch
+
+隨機選擇一條架構
+
+loss = lossfn(
+    run(pi, ids).permute(0, 2, 1),
+    tgt
+)
+假設模型輸出原本是：
+
+batch × sequence × vocab
+但 CrossEntropyLoss 需要：
+
+batch × classes × sequence
+因此使用：
+
+.permute(0, 2, 1)
+將維度改成：
+
+batch × vocab × sequence
+反向傳播
+opt.zero_grad()
+loss.backward()
+opt.step()
+標準 PyTorch 訓練流程：
+
+清除舊梯度
+→ 計算新梯度
+→ 更新模型參數
+雖然每一步只選一條路徑，但多條路徑共享部分模組，所以某條路徑更新後，其他使用相同模組的路徑也可能一起改善。
+
+這就是 one-shot NAS 可以降低搜尋成本的原因。
+
+8. 載入搜尋得到的 BioArc 8M
+NC = 2
+CKPT = f"{PROJECT_DIR}/ckpts/DNA_8M.ckpt"
+NC=2：二元分類
+
+CKPT：預訓練權重檔案
+
+bio, _ = build_custom_model(
+    PROJECT_DIR,
+    "kmer1",
+    NC,
+    checkpoint_path=CKPT
+)
+建立 BioArc，並載入預訓練 checkpoint。
+
+bio = bio.to(DEVICE).eval()
+.to(DEVICE)：移到 GPU
+
+.eval()：切換成推論模式
+
+.eval() 會影響 Dropout、BatchNorm 等模組的行為。
+
+測試單筆 DNA
+ids0 = torch.tensor(
+    btok.encode(demo_seq).ids
+).unsqueeze(0).to(DEVICE)
+.unsqueeze(0) 是增加 batch 維度。
+
+原本：
+
+sequence_length
+變成：
+
+1 × sequence_length
+m0 = torch.ones_like(ids0)
+建立 attention mask，全部為 1，表示每個位置都有效。
+
+with torch.no_grad():
+    logit, feat, _ = bio(ids0, m0)
+可能回傳：
+
+logit：分類結果
+
+feat：抽取出的序列特徵
+
+_：其他中間資訊
+
+torch.no_grad() 表示不需要保存梯度，可減少記憶體使用。
+
+9. 三個 DNA 分類資料集
+DATASETS = {
+    "core_promoter (interp. task)": "datasets/core_promoter",
+    "human_nontata_promoters": "datasets/GB/human_nontata_promoters",
+    "demo_coding_vs_intergenomic": "datasets/GB/demo_coding_vs_intergenomic_seqs",
+}
+三個任務大致為：
+
+Core promoter
+判斷 DNA 是否具有核心啟動子特徵。
+
+Human non-TATA promoter
+辨識不包含典型 TATA box 的人類 promoter。
+
+Coding vs intergenomic
+區分：
+
+蛋白質編碼區域
+
+基因間區域
+
+訓練設定
+N_TR, N_TE = 2000, 1000
+EP, BS = 3, 64
+代表：
+
+訓練資料：2,000 筆
+
+測試資料：1,000 筆
+
+Epoch：3
+
+Batch size：64
+
+LR_BIO = 5e-4
+LR_NT = 5e-4
+兩個模型的 learning rate。
+
+程式註解寫：
+
+large pretrained FM -> smaller LR
+但目前 LR_NT 與 LR_BIO 實際相同，都是 5e-4。
+
+10. 自訂 PyTorch Dataset
+class _SeqDS(torch.utils.data.Dataset):
+這個 Dataset 負責將 DNA 字串轉換成 PyTorch Tensor。
+
+def __getitem__(s, i):
+    x = torch.tensor(tokB.encode(s.seqs[i]).ids)
+    return x, torch.tensor(s.labs[i]), len(x)
+每筆回傳：
+
+DNA token IDs
+分類標籤
+序列長度
+之後 build_cls_collate() 會根據序列長度進行 padding 並建立 mask。
+
+11. NT-50M 分類模型
+class _NTClf(nn.Module):
+這個類別是在 Nucleotide Transformer 上加一個二元分類 head。
+
+o = s.enc(
+    input_ids=ids,
+    attention_mask=mask
+).last_hidden_state
+取得每一個 token 的 hidden state。
+
+形狀通常是：
+
+batch × sequence_length × hidden_size
+Masked mean pooling
+m = mask.unsqueeze(-1).float()
+將 mask 從：
+
+batch × sequence
+變成：
+
+batch × sequence × 1
+(o * m).sum(1) / m.sum(1)
+這是在做有效 token 的平均。
+
+Padding 的位置因為 mask 是 0，不會被算進平均值。
+
+最後：
+
+s.head(...)
+將平均特徵轉成兩個類別的 logits。
+
+12. 微調 BioArc
+def ft_bioarc(trs, trl, tes, tel):
+輸入：
+
+trs：訓練 DNA
+
+trl：訓練標籤
+
+tes：測試 DNA
+
+tel：測試標籤
+
+建立 DataLoader
+tl = DataLoader(
+    _SeqDS(trs, trl),
+    batch_size=BS,
+    shuffle=True,
+    collate_fn=coll
+)
+訓練資料會打亂。
+
+vl = DataLoader(
+    _SeqDS(tes, tel),
+    batch_size=32,
+    collate_fn=coll
+)
+測試資料不需要打亂。
+
+計算準確率
+c += (
+    m(x, mm)[0].argmax(1) == y
+).sum().item()
+流程是：
+
+模型輸出 logits
+→ argmax 取最高分的類別
+→ 與正確答案比較
+→ 計算答對數量
+最後：
+
+return c / n
+得到 accuracy。
+
+梯度裁切
+nn.utils.clip_grad_norm_(
+    m.parameters(),
+    1.0
+)
+限制梯度 norm 最大為 1.0。
+
+這可以降低：
+
+梯度爆炸
+
+LSTM 或複雜混合模型訓練不穩定
+
+13. 微調 Nucleotide Transformer 50M
+enc = AutoModelForMaskedLM.from_pretrained(
+    _MID,
+    trust_remote_code=True
+).esm
+下載：
+
+InstaDeepAI/nucleotide-transformer-v2-50m-multi-species
+AutoModelForMaskedLM 原本包含：
+
+Transformer encoder + Masked LM head
+程式只取：
+
+.esm
+也就是底層 encoder，再接上自訂二元分類器。
+
+NT tokenizer
+b = _ntok(
+    s,
+    return_tensors="pt",
+    padding=True,
+    truncation=True,
+    max_length=64
+)
+將 DNA 批次轉成 token，並：
+
+自動 padding
+
+長度超過 64 時截斷
+
+回傳 PyTorch Tensor
+
+這裡有一個重要差異：
+
+BioArc 使用 kmer1 tokenizer
+NT-50M 使用自己的 pretrained tokenizer
+所以兩個模型看到的 token 表示方式不完全相同。
+
+14. 比較兩個模型
+for name, path in DATASETS.items():
+逐一處理三個資料集。
+
+b, bio_m = ft_bioarc(...)
+n, nt_clf = ft_nt50m(...)
+分別取得：
+
+BioArc 最佳測試 accuracy
+
+NT-50M 最佳測試 accuracy
+
+rows.append((name, b, n))
+保存結果，最後印成表格。
+
+if kept is None:
+    kept = (
+        name,
+        path,
+        bio_m,
+        nt_clf,
+        tes,
+        tel
+    )
+只保留第一個資料集的：
+
+微調後 BioArc
+
+微調後 NT-50M
+
+測試資料
+
+測試標籤
+
+供後面的模型解釋使用。
+
+15. 找出 BioArc 正確、NT 錯誤的案例
+_bp = _bio_preds(_tes)
+_np_ = _nt_preds(_tes)
+分別對整個測試集進行預測。
+
+CASES = [
+    {
+        "idx": i,
+        "label": _tel[i],
+        "seq": _tes[i]
+    }
+    for i in range(len(_tes))
+    if _bp[i] == _tel[i]
+    and _np_[i] != _tel[i]
+]
+篩選條件：
+
+BioArc 預測正確
+而且
+NT-50M 預測錯誤
+這樣可以選出案例，進一步比較兩個模型為什麼表現不同。
+
+為什麼先在 GPU 掃描，再移到 CPU？
+bio = bio.to(DEVICE)
+_ntclf = _ntclf.to(DEVICE)
+大量預測在 GPU 上較快。
+
+完成後：
+
+bio = bio.cpu().eval()
+_ntclf = _ntclf.cpu().eval()
+移到 CPU，是因為後面的 interpretation 工具可能：
+
+建立 hook
+
+取出中間 activation
+
+執行 Grad-CAM
+
+使用 CPU tensor 繪圖
+
+因此作者刻意將解釋階段放到 CPU。
+
+16. 選擇一個案例
+PICK = CASE_IDS[4]
+選擇第 5 個符合條件的案例。
+
+注意，這行可能出錯。
+
+如果符合條件的案例少於 5 個，就會出現：
+
+IndexError: list index out of range
+更安全的寫法是：
+
+if not CASE_IDS:
+    raise RuntimeError("找不到 BioArc 正確且 NT 錯誤的案例")
+
+PICK = CASE_IDS[min(4, len(CASE_IDS) - 1)]
+17. BioArc 的逐層解釋
+from core.interpretation import interp_layers as IL
+載入專案自訂的模型解釋工具。
+
+x = torch.tensor(
+    btok.encode(DP).ids
+).unsqueeze(0)
+將選定 DNA 轉成 batch size 為 1 的 tensor。
+
+抽取各層 activation
+acts, attns, info = IL.extract_layer_activations(
+    bio,
+    x
+)
+可能取得：
+
+acts：每層 activation
+
+attns：attention map
+
+info：每一層的類型、順序和資訊
+
+CNN Grad-CAM
+cnn_top = IL.extract_gradcam(bio, x)
+使用 Grad-CAM 判斷 CNN 區塊最關注 DNA 的哪些位置。
+
+Grad-CAM 的概念是：
+
+某位置的特徵
+對最終分類結果影響越大
+→ 該位置的重要性越高
+TSS
+L = len(DP)
+TSS = L // 2
+假設 Transcription Start Site 位於序列中央。
+
+例如 DNA 長度為 300 bp：
+
+TSS = 150
+這是資料集對齊方式的假設，不是程式自行從 DNA 找出真正 TSS。
+
+畫出逐層圖
+fig, nL = IL.plot_layers(
+    acts,
+    attns,
+    info,
+    L,
+    DP,
+    save_path=None,
+    cnn_top=cnn_top,
+    tss=TSS
+)
+圖上可能顯示：
+
+CNN 關注的局部 motif
+
+Transformer attention
+
+LSTM 的序列回應
+
+Hyena 的長距離訊號
+
+TSS 位置
+
+Inr、MTE、DPE 等 promoter element
+
+這可以觀察不同模組在混合架構中扮演的角色。
+
+18. 解釋 NT-50M
+nt_res = IL.analyze_nt(
+    enc,
+    hN,
+    ntok,
+    DP
+)
+分析 NT-50M 對同一條 DNA 的反應。
+
+Saliency
+程式註解：
+
+saliency = what drove NT's decision
+Saliency 通常利用輸出對輸入 embedding 的梯度，估計：
+
+哪些 DNA 位置最影響模型的分類結果
+值越高，代表該位置對目前預測越重要。
+
+Attention to CLS
+程式註解：
+
+attn->CLS = where it looks
+這通常表示觀察其他 token 對分類 token，例如 CLS 的 attention。
+
+但要注意：
+
+Attention 高不一定等於真正的因果重要性
+所以圖中同時顯示：
+
+Attention：模型在資訊聚合時看哪裡
+
+Saliency：哪些位置實際影響輸出
+
+兩者一起看會比較合理。
+
+這份 Notebook 要證明什麼？
+核心不是單純證明「小模型一定勝過大模型」，而是展示三件事。
+
+1. 生物序列可能適合混合架構
+DNA 同時存在：
+
+局部 motif
+
+長距離關聯
+
+上下文順序
+
+週期性與長卷積特性
+
+不同模組各有優勢：
+
+模組	主要能力
+CNN	擷取局部 motif
+Transformer	建模全域關聯
+LSTM	處理順序與上下文
+Hyena	高效率長距離建模
+Mamba	狀態空間序列建模
+BioArc 嘗試自動找出最合適的組合。
+
+2. 權重共享可以降低架構搜尋成本
+不必完整訓練數百萬個模型，而是建立一個 Supernet，讓候選架構共用參數。
+
+3. 8M 混合模型可能在特定任務接近或超過 50M Transformer
+這代表模型效果不只取決於參數量，也與：
+
+架構是否適合任務
+
+預訓練資料
+
+Tokenizer
+
+微調設定
+
+資料量
+
+有關。
+
+程式中值得注意的問題
+1. 註解與實際測試集數量不一致
+程式寫：
+
+N_TE = 1000
+但後面註解是：
+
+# keep the SAME 500-row test subset
+實際上保留的是最多 1,000 筆，不是 500 筆。這應該是舊註解沒有更新。
+
+2. PICK = CASE_IDS[4] 不安全
+若案例不足 5 筆會報錯，建議改成：
+
+if len(CASE_IDS) == 0:
+    raise RuntimeError("沒有可供比較的案例")
+
+PICK = CASE_IDS[min(4, len(CASE_IDS) - 1)]
+3. NT-50M 的 learning rate 可能偏大
+LR_NT = 5e-4
+對完整微調 50M pretrained Transformer 而言，5e-4 可能偏高。
+
+可考慮：
+
+LR_NT = 1e-5
+或：
+
+LR_NT = 5e-5
+但最佳值仍需實驗確認。
+
+目前設定可能使 NT-50M 在小資料集上較容易破壞預訓練權重，因此比較結果不一定完全公平。
+
+4. 使用測試集挑最佳 Epoch
+程式中的：
+
+best = max(best, acc())
+每個 epoch 都在 test set 上計算，最後選 test accuracy 最高的一次。
+
+嚴格研究流程應該分成：
+
+Train：更新模型
+Validation：挑選最佳模型與超參數
+Test：最後只評估一次
+否則會間接對 test set 過度調整。
+
+5. 沒有保存最佳 Epoch 的模型權重
+程式只保存最高 accuracy：
+
+best = max(best, acc())
+但 m 或 clf 最後回傳的是最後一個 epoch 的模型，不一定是 accuracy 最佳時的模型。
+
+可以改成：
+
+best_acc = 0
+best_state = None
+
+current_acc = acc()
+
+if current_acc > best_acc:
+    best_acc = current_acc
+    best_state = copy.deepcopy(m.state_dict())
+
+m.load_state_dict(best_state)
+這樣後面的 interpretation 才確定使用最佳模型。
+
+6. 這是教學規模，不是完整 BioArc 搜尋
+Notebook 只：
+
+使用 5 條人工挑選路徑
+
+訓練 60 steps
+
+讀取 96 條 DNA
+
+跳過 Mamba
+
+真正的 BioArc 架構搜尋會有：
+
+更多候選路徑
+
+更長預訓練
+
+更多資料
+
+更完整的搜尋與排名機制
+
+因此這裡主要是展示概念與工作流程，不能把 toy experiment 的數字當成正式論文結果。
+
+
+---
+
+Skip to main content
+Playground
+Input transcript
+EN So, the foundation model has been built across this diverse real biological modalities. DNA protein sequence, spatial omics, for science discovery. However, there still, like we said, much more to be done. Uh, we can uh go deeper and find more effective neural architectures that bring us uh much better results. And the other time, and also, I think a lot of integration is still something people can do. And the genetic system for auto genetic research you may have heard it a lot today in various tutorials, uh to really deploy. I guess we also talked about many challenges, evaluation, different things. Yeah. Okay. So, you know, last, I we have this um quick online demo. Uh, if people wanted to try, I here's the link and the QR code. Yeah, from the last demo, I see the uh network speed is slow. I'm not sure how smooth it can go. Uh but yeah, we can try it. I have the pre-run results. So if the network is slow, I can just go over the code and show the results. And you can go back to check it later on your own. Okay. Uh, okay. Yeah, so let's go to this. uh demo. Yeah, we set it up on Google Colab. This is a very, very small example because you can imagine it's impossible for us to train in real time a foundation model here during a tutorial. It takes our uh GPU server to train for several days. Yeah. So, so here we just take a very, very small example to show you and we take a pre-trained checkpoint from our uh trained model to show some validation of the results. Yeah. So, um this is the bio art automatic architecture for biological sequence, or you can extend it to general modalities. Yeah. So, like we just explained, uh so this is a heterogeneous search space. You can have this architecture at the end. I so with the sharing task one, show pre-training. Uh, on real DNA sequences, and we discovered say 8 million hybrid architecture that works the best. And we have some training scripts. Uh everything you can use is just you literally try it on your own data, you may need to plug in your own data and you need to have your own powerful GPU server. So this is the collab is just one one uh let me see. Uh, yeah, one GPU here, but on our server it's much more. Yeah, and much longer training. Um and last, we show some interpretability even with a hybrid architecture, it's derivable from the last layer to the first input layer. So you can actually visualize the interpretability of every layer in the hybrid architecture. Yeah. Let me see how much. Yeah, so the first step is we just uh load in Yeah, it's kind of Oh, okay. running. Yeah. You know, we have a dedicated GitHub with all the code and everything for the ML um we if people are interested in later, we will have it this tutorial is a much smaller uh version. of this notebook. Uh the first step is just uh load the data. Uh and the model in this tutorial. Yeah, it it looks slow. Um how about I just go ahead and show you the output from every step. Yeah. And the later, uh you can bite out on your own computer. Yeah, that's too slow. Setup GPU if available. We use one GPU. Uh on Colab. Uh but you guys all know if you want to train a foundation model, you need a basic GPU resource. Yeah. Uh Yeah, it it takes time. Yeah. So it it just shows we loaded this SMB tutorial, this project, uh this approach version everything. Uh Peter Genius search space. First way, uh try to help you visualize how large the in this example, type, you can define what blocks. block types. you want to include in the search space. We have we have LSTM, we have Mamba, transformer. Those are blocks. Uh again, it's not it's not the transformer you were thinking about in the Google paper. This is one block, transformer block. Uh hidden dimension, that's the width, that's the width. Uh you can vary from 64 112 we have different widths in different layers, which dramatically increases the possibility of the search space. Also the depths. For the depths, uh because you can if it's three, layers, and to six layers, and in each layer you probably have five different choices. Uh due to different block choice. So if it's depth of three, in total you have 125 block type orders. That's this total number of possibilities. Uh then say given the setting, how large is our search space. Uh if your depth can vary from three to six, then this is the total block. and everything up is 1900 500. times the width choice, you end up with millions of architectures. So you can see this search space is super large. So you cannot just train one by one, they're need some tricks. Uh in the in our final paper, we have a lot of pruning. and the training. uh like paradigms. to enable us uh to pretrain this. uh supernet. Yeah. So uh so this is the uh realization of some possible paths from this supernet. Like they are connected, right? And they are hybrid. So here are five examples, uh you always start with your input embedding. Uh derived from your tokenizer. Yeah, that's your embedding step. Then in between say you probably have one block, then a transformer block, then a LSTM block, and then this is the this is the input output. Uh in different blocks. So you have different paths, means you have different architectures. You have millions of possible paths. which means we have millions of possible architectures. Yeah. Yeah. So then after that is the training training step. Again, for this tutorial, because we really cannot train in real time, uh here we put, I guess, five, five or 10 examples. If you really run it, but it still take several minutes. Uh with this low bandwidth, I probably don't run it. Yeah. Uh but but here you can see, right? the different paths. The first um if you want to train such a supernet, you may not want to train every path from scratch. That's first computationally impossible. and the secondly, the waste, it's the waste of the training. Because you can imagine many paths share common blocks, right? I have seen transformer transformer, have another CNN transformer, Mamba here, then they have partial overlap. So the start with the train every possible path, we have a one shot training this whole supernet. Yeah, the
+
+Output transcript
+EN
+
+info
+Google AI models may make mistakes, so double-check outputs.
+
